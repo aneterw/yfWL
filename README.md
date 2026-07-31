@@ -166,7 +166,14 @@ yfWL/
 
 ### 安裝步驟
 
-**1. 安裝 Python 依賴**
+**1. Clone 專案到本機**
+
+```bash
+git clone https://github.com/aneterw/yfWL.git
+cd yfWL
+```
+
+**2. 安裝 Python 依賴**
 
 ```bash
 pip install -r requirements.txt
@@ -181,7 +188,7 @@ pywebview>=5.0.0
 uvicorn>=0.30.0
 ```
 
-**2. 啟動應用程式**
+**3. 啟動應用程式**
 
 雙擊 `yfWL.bat` 即可啟動。
 
@@ -191,7 +198,7 @@ uvicorn>=0.30.0
 python app.py
 ```
 
-**3. 開始使用**
+**4. 開始使用**
 
 - 左側為觀測清單，預設載入全球主要指數
 - 使用搜尋欄位新增股票到觀測清單
@@ -405,7 +412,14 @@ yfWL/
 
 ### Installation
 
-**1. Install Python dependencies**
+**1. Clone the project**
+
+```bash
+git clone https://github.com/aneterw/yfWL.git
+cd yfWL
+```
+
+**2. Install Python dependencies**
 
 ```bash
 pip install -r requirements.txt
@@ -420,7 +434,7 @@ pywebview>=5.0.0
 uvicorn>=0.30.0
 ```
 
-**2. Launch the application**
+**3. Launch the application**
 
 Double-click `yfWL.bat` to start.
 
@@ -430,7 +444,7 @@ Or use command line:
 python app.py
 ```
 
-**3. Start using**
+**4. Start using**
 
 - Left panel is the watchlist, pre-loaded with global major indices
 - Use the search bar to add stocks to your watchlist
