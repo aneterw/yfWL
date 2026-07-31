@@ -2,7 +2,7 @@
 
 # yfWL — 全球股市看盤
 
-### [English Version](#english-version)
+### [English Version](#yfwl--global-stock-monitor)
 
 </div>
 
@@ -238,10 +238,6 @@ A: 目前主要在 Windows 上測試。Mac/Linux 理論上可行，但可能需�
 ## 授權條款
 
 本專案採用 [MIT 授權條款](LICENSE.md)。
-
----
-
-<div id="english-version"></div>
 
 ---
 
