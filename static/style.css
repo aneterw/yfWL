@@ -1,0 +1,781 @@
+/* ==================== 全域變數 ==================== */
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #0f3460;
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0a0;
+    --border-color: #2b2b43;
+    --accent-blue: #4a90d9;
+    --accent-green: #26a69a;
+    --accent-red: #ef5350;
+    --accent-yellow: #f5a623;
+    --hover-bg: #252547;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --base-font-size: 14px;
+}
+
+/* ==================== 全域字體繼承 ==================== */
+body {
+    font-size: var(--base-font-size);
+    font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.app {
+    min-height: 100vh;
+    font-size: var(--base-font-size);
+    font-family: inherit;
+}
+
+/* 所有子元素繼承 font-family */
+.app * {
+    font-family: inherit;
+}
+
+/* ==================== 主題 ==================== */
+.theme-light {
+    --bg-primary: #f0f2f5;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #d0d0d0;
+    --hover-bg: #e8e8e8;
+}
+
+.theme-dark {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121f;
+    --bg-card: #1a1a2e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #888888;
+    --border-color: #2a2a3a;
+    --hover-bg: #1e1e30;
+}
+
+/* ==================== 基礎樣式 ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==================== 觀測清單管理 ==================== */
+.watchlist-section {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+}
+
+.watchlist-manager {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.watchlist-switcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.watchlist-switcher label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.watchlist-select {
+    max-width: 200px;
+}
+
+.watchlist-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ==================== 搜尋框（行內版） ==================== */
+.search-wrapper-inline {
+    position: relative;
+    flex: 1;
+    max-width: 360px;
+}
+
+.search-input-inline {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: calc(var(--base-font-size) * 0.93);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-input-inline:focus {
+    border-color: var(--accent-blue);
+}
+
+/* ==================== 導航欄 ==================== */
+.navbar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.app-title {
+    font-size: calc(var(--base-font-size) * 1.43);
+    font-weight: 600;
+    color: var(--accent-blue);
+    white-space: nowrap;
+}
+
+.nav-warning {
+    flex: 1;
+    text-align: center;
+}
+
+.delay-warning {
+    background: linear-gradient(135deg, #ff6b6b, #feca57);
+    color: #000;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.cache-notice {
+    background: linear-gradient(135deg, #ff9a3c, #feca57);
+    color: #000;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    animation: pulse 2s infinite;
+    margin-left: 10px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.last-update {
+    font-size: calc(var(--base-font-size) * 0.86);
+    color: var(--text-secondary);
+}
+
+.update-progress {
+    font-size: 11px;
+    color: var(--accent-yellow);
+    font-weight: 600;
+    display: none;
+    padding: 2px 8px;
+    background: rgba(245, 166, 35, 0.15);
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+/* ==================== 按鈕 ==================== */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: calc(var(--base-font-size) * 0.93);
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-primary {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #3a7bc8;
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background: var(--accent-green);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #20897a;
+}
+
+.btn-danger {
+    background: var(--accent-red);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #d32f2f;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: calc(var(--base-font-size) * 0.86);
+}
+
+.btn-settings, .btn-refresh {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-settings:hover, .btn-refresh:hover {
+    background: var(--hover-bg);
+}
+
+/* ==================== 搜尋下拉 ==================== */
+.search-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-top: 4px;
+    display: none;
+    z-index: 200;
+    box-shadow: var(--shadow);
+}
+
+.search-container.show {
+    display: block;
+}
+
+.result-section {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.result-section h4 {
+    font-size: calc(var(--base-font-size) * 0.86);
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    gap: 8px;
+    font-size: calc(var(--base-font-size) * 0.85);
+}
+
+.search-result-item:hover {
+    background: var(--hover-bg);
+}
+
+.result-ticker {
+    font-weight: 600;
+    color: var(--accent-blue);
+    min-width: 80px;
+}
+
+.result-name {
+    flex: 1;
+    color: var(--text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.result-source-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.tag-local {
+    background: #26a69a;
+    color: white;
+}
+
+.tag-yahoo {
+    background: #7b61ff;
+    color: white;
+}
+
+.no-results {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* ==================== 報價表格 ==================== */
+.quote-section {
+    padding: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.quote-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.quote-table thead {
+    background: var(--bg-card);
+}
+
+.quote-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.quote-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: var(--base-font-size);
+}
+
+.quote-table tbody tr {
+    transition: background 0.2s;
+}
+
+.quote-table tbody tr:hover {
+    background: var(--hover-bg);
+}
+
+.ticker-name {
+    font-weight: 500;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ticker-code {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.price {
+    font-weight: 600;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.change {
+    font-weight: 500;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.change.up, .price-up {
+    color: var(--accent-red);
+}
+
+.change.down, .price-down {
+    color: var(--accent-green);
+}
+
+.volume {
+    color: var(--text-secondary);
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* ==================== 彈窗 ==================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    width: 95%;
+    max-width: 1200px;
+    max-height: 92vh;
+    overflow: visible;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-card);
+}
+
+.modal-header h3 {
+    font-size: calc(var(--base-font-size) * 1.29);
+    font-weight: 600;
+}
+
+.close-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: calc(var(--base-font-size) * 1.71);
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    background: var(--bg-card);
+}
+
+/* ==================== 設定表單 ==================== */
+.setting-group {
+    margin-bottom: 20px;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: calc(var(--base-font-size) * 0.93);
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--accent-blue);
+}
+
+.form-range {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border-color);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.form-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    cursor: pointer;
+}
+
+/* ==================== 詳情頁 ==================== */
+.detail-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 16px 24px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: var(--base-font-size);
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background: var(--hover-bg);
+}
+
+.tab-btn.active {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.detail-content {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.info-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.info-card h4 {
+    font-size: var(--base-font-size);
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+}
+
+.current-price {
+    font-size: calc(var(--base-font-size) * 2.29);
+    font-weight: 700;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.price-change {
+    font-size: calc(var(--base-font-size) * 1.29);
+    font-weight: 500;
+}
+
+.price-change.up {
+    color: var(--accent-red);
+}
+
+.price-change.down {
+    color: var(--accent-green);
+}
+
+.change-arrow {
+    font-size: calc(var(--base-font-size) * 1.6);
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.change-arrow.up {
+    color: var(--accent-red);
+}
+
+.change-arrow.down {
+    color: var(--accent-green);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-item label {
+    font-size: calc(var(--base-font-size) * 0.86);
+    color: var(--text-secondary);
+}
+
+.info-item span {
+    font-size: calc(var(--base-font-size) + 2px);
+    font-weight: 500;
+    color: #39ff14;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* ==================== K線圖 ==================== */
+.period-btns {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.chart-container {
+    width: 100%;
+    min-height: 500px;
+    height: 500px;
+    border-radius: 12px;
+    overflow: visible;
+    background: #1a1a2e;
+}
+
+/* ==================== 新聞列表 ==================== */
+.news-item {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s;
+}
+
+.news-item:hover {
+    transform: translateY(-2px);
+}
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.news-publisher {
+    font-size: calc(var(--base-font-size) * 0.86);
+    color: var(--accent-blue);
+    font-weight: 500;
+}
+
+.news-time {
+    font-size: calc(var(--base-font-size) * 0.86);
+    color: var(--text-secondary);
+}
+
+.news-title {
+    font-size: calc(var(--base-font-size) * 1.07);
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.news-title:hover {
+    color: var(--accent-blue);
+}
+
+/* ==================== 載入中 ==================== */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: var(--text-secondary);
+}
+
+/* ==================== 響應式 ==================== */
+@media (max-width: 1024px) {
+    .nav-container {
+        flex-wrap: wrap;
+    }
+
+    .quote-table th,
+    .quote-table td {
+        padding: 10px 8px;
+    }
+
+    .modal-content {
+        width: 98%;
+        max-height: 95vh;
+        overflow: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .actions {
+        flex-wrap: wrap;
+    }
+
+    .btn-sm {
+        padding: 4px 8px;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

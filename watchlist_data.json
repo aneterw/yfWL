@@ -1,0 +1,208 @@
+{
+  "version": "1.0",
+  "created_at": "2026-07-31T14:53:14.400438",
+  "last_updated": "2026-07-31T22:58:48.866636",
+  "settings": {
+    "language": "zh-TW",
+    "theme": "system",
+    "font_family": "LXGW ZhenKai GB",
+    "font_size": 19,
+    "auto_update_interval": 300,
+    "price_alerts": {},
+    "window_width": 1400,
+    "window_height": 1020
+  },
+  "watchlists": {
+    "items": {
+      "default": [
+        {
+          "name": "道瓊工業平均指數",
+          "ticker": "^DJI",
+          "type": "index"
+        },
+        {
+          "name": "S&P500 指數",
+          "ticker": "^GSPC",
+          "type": "index"
+        },
+        {
+          "name": "納斯達克綜合指數",
+          "ticker": "^IXIC",
+          "type": "index"
+        },
+        {
+          "name": "費城半導體指數",
+          "ticker": "^SOX",
+          "type": "index"
+        },
+        {
+          "name": "台灣加權指數",
+          "ticker": "^TWII",
+          "type": "index"
+        },
+        {
+          "name": "上證綜指",
+          "ticker": "000001.SS",
+          "type": "index"
+        },
+        {
+          "name": "深證成指",
+          "ticker": "399001.SZ",
+          "type": "index"
+        },
+        {
+          "name": "恆生指數",
+          "ticker": "^HSI",
+          "type": "index"
+        },
+        {
+          "name": "日經 225 指數",
+          "ticker": "^N225",
+          "type": "index"
+        },
+        {
+          "name": "韓國綜合股價指數",
+          "ticker": "^KS11",
+          "type": "index"
+        },
+        {
+          "name": "新加坡海峽時報指數",
+          "ticker": "^STI",
+          "type": "index"
+        },
+        {
+          "name": "德國 DAX 指數",
+          "ticker": "^GDAXI",
+          "type": "index"
+        },
+        {
+          "name": "法國 CAC40 指數",
+          "ticker": "^FCHI",
+          "type": "index"
+        },
+        {
+          "name": "英國富時 100 指數",
+          "ticker": "^FTSE",
+          "type": "index"
+        }
+      ],
+      "US": [
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA Corporation"
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "Alphabet Inc."
+        },
+        {
+          "ticker": "AAPL",
+          "name": "Apple Inc."
+        },
+        {
+          "ticker": "MSFT",
+          "name": "Microsoft Corporation"
+        },
+        {
+          "ticker": "TSM",
+          "name": "Taiwan Semiconductor Manufactur"
+        },
+        {
+          "ticker": "AMZN",
+          "name": "Amazon.com, Inc."
+        },
+        {
+          "ticker": "META",
+          "name": "Meta Platforms, Inc."
+        },
+        {
+          "ticker": "AVGO",
+          "name": "Broadcom Inc."
+        },
+        {
+          "ticker": "TSLA",
+          "name": "Tesla, Inc."
+        },
+        {
+          "ticker": "SPCX",
+          "name": "Space Exploration Technologies "
+        },
+        {
+          "ticker": "BRK-B",
+          "name": "Berkshire Hathaway Inc. New"
+        },
+        {
+          "ticker": "LLY",
+          "name": "Eli Lilly and Company"
+        },
+        {
+          "ticker": "JPM",
+          "name": "JP Morgan Chase & Co."
+        },
+        {
+          "ticker": "WMT",
+          "name": "Walmart Inc."
+        },
+        {
+          "ticker": "HD",
+          "name": "Home Depot, Inc. (The)"
+        },
+        {
+          "ticker": "UNH",
+          "name": "UnitedHealth Group Incorporated"
+        },
+        {
+          "ticker": "MA",
+          "name": "Mastercard Incorporated"
+        },
+        {
+          "ticker": "V",
+          "name": "Visa Inc."
+        },
+        {
+          "ticker": "ABBV",
+          "name": "AbbVie Inc."
+        },
+        {
+          "ticker": "XOM",
+          "name": "ExxonMobil Holdings Corporation"
+        },
+        {
+          "ticker": "COST",
+          "name": "Costco Wholesale Corporation"
+        }
+      ],
+      "Taiwan": [
+        {
+          "ticker": "2330.TW",
+          "name": "台積電"
+        },
+        {
+          "ticker": "2454.TW",
+          "name": "聯發科"
+        },
+        {
+          "ticker": "2308.TW",
+          "name": "台達電"
+        },
+        {
+          "ticker": "2317.TW",
+          "name": "鴻海"
+        },
+        {
+          "ticker": "3711.TW",
+          "name": "日月光投控"
+        },
+        {
+          "ticker": "0050.TW",
+          "name": "YUANTA SECURITIES INV TRUST CO "
+        },
+        {
+          "ticker": "2303.TW",
+          "name": "聯電"
+        }
+      ]
+    },
+    "current": "default"
+  }
+}

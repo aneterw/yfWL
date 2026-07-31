@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "total_count": 10390,
+  "generated_date": "2026-07-28",
+  "categories": {
+    "US_STOCKS": [
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "JPM",
+      "V",
+      "WMT"
+    ],
+    "CHINA_STOCKS": [
+      "000001.SS",
+      "399001.SZ",
+      "2238.HK",
+      "9988.HK"
+    ],
+    "INDEXES": [
+      "^DJI",
+      "^GSPC",
+      "^IXIC",
+      "^NDX",
+      "^GSPC",
+      "^HSCC",
+      "^N225",
+      "^FTSE",
+      "^CAC40",
+      "^GDAXI",
+      "^STI",
+      "^BVSP",
+      "^IBOV"
+    ],
+    "CRYPTO": [
+      "BTC-USD",
+      "ETH-USD"
+    ]
+  },
+  "all_tickers": []
+}
