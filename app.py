@@ -1374,8 +1374,10 @@ function addItem(ticker, name) {
         body: JSON.stringify({ticker, name: name || ticker})
     }).then(r => r.json()).then(data => {
         if (data.success) {
-            document.getElementById('search-input').value = '';
+            const searchInput = document.getElementById('search-input');
+            searchInput.value = '';
             document.getElementById('search-results').innerHTML = '';
+            searchInput.focus();
             refreshTable();
         }
     });
