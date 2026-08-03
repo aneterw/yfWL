@@ -1233,6 +1233,8 @@ function applySettings() {
     
     const theme = currentSettings.theme || 'system';
     document.querySelector('.app').className = `app theme-${theme}`;
+    
+    startAutoUpdate();
 }
 
 let pendingSettings = {};
