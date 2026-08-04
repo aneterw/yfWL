@@ -14,20 +14,20 @@ DATA_FILE = Path(__file__).parent / "watchlist_data.json"
 TICKERS_FILE = Path(__file__).parent / "Indexing.json"
 
 DEFAULT_WATCHLIST = [
-    {"name": "道瓊工業平均指數", "ticker": "^DJI", "type": "index"},
-    {"name": "S&P500 指數", "ticker": "^GSPC", "type": "index"},
-    {"name": "納斯達克綜合指數", "ticker": "^IXIC", "type": "index"},
-    {"name": "費城半導體指數", "ticker": "^SOX", "type": "index"},
-    {"name": "台灣加權指數", "ticker": "^TWII", "type": "index"},
-    {"name": "上證綜指", "ticker": "000001.SS", "type": "index"},
-    {"name": "深證成指", "ticker": "399001.SZ", "type": "index"},
-    {"name": "恆生指數", "ticker": "^HSI", "type": "index"},
-    {"name": "日經 225 指數", "ticker": "^N225", "type": "index"},
-    {"name": "韓國綜合股價指數", "ticker": "^KS11", "type": "index"},
-    {"name": "新加坡海峽時報指數", "ticker": "^STI", "type": "index"},
-    {"name": "德國 DAX 指數", "ticker": "^GDAXI", "type": "index"},
-    {"name": "法國 CAC40 指數", "ticker": "^FCHI", "type": "index"},
-    {"name": "英國富時 100 指數", "ticker": "^FTSE", "type": "index"},
+    {"name": "Dow Jones Industrial Average", "ticker": "^DJI", "type": "index"},
+    {"name": "S&P 500", "ticker": "^GSPC", "type": "index"},
+    {"name": "NASDAQ Composite", "ticker": "^IXIC", "type": "index"},
+    {"name": "PHLX Semiconductor", "ticker": "^SOX", "type": "index"},
+    {"name": "Taiwan Weighted", "ticker": "^TWII", "type": "index"},
+    {"name": "Shanghai Composite", "ticker": "000001.SS", "type": "index"},
+    {"name": "Shenzhen Component", "ticker": "399001.SZ", "type": "index"},
+    {"name": "Hang Seng Index", "ticker": "^HSI", "type": "index"},
+    {"name": "Nikkei 225", "ticker": "^N225", "type": "index"},
+    {"name": "KOSPI", "ticker": "^KS11", "type": "index"},
+    {"name": "Straits Times Index", "ticker": "^STI", "type": "index"},
+    {"name": "DAX", "ticker": "^GDAXI", "type": "index"},
+    {"name": "CAC 40", "ticker": "^FCHI", "type": "index"},
+    {"name": "FTSE 100", "ticker": "^FTSE", "type": "index"},
 ]
 
 # 多語言翻譯
@@ -55,9 +55,12 @@ TRANSLATIONS = {
         "theme_mist_purple": "霧紫透玻璃",
         "theme_jade_green": "青綠透玻璃",
         "auto_update": "自動更新",
-        "manual_update_current": "更新當前頁面",
-        "manual_update_all": "更新全部報價",
+        "manual_update_current": "更新本頁",
+        "manual_update_all": "更新全部",
         "last_update": "最後更新",
+        "updating": "更新中...",
+        "updating_all": "正在更新全部清單...",
+        "update_complete": "✓ 完成",
         "price_alert": "價格提醒",
         "delay_warning": "⚠️ 報價資訊延遲至少15~20分鐘。所有資訊僅供參考，實際交易價格請以券商或交易所為準。",
         "basic_info": "基本資訊",
@@ -66,6 +69,8 @@ TRANSLATIONS = {
         "daily": "日線",
         "weekly": "週線",
         "monthly": "月線",
+        "k_line_chart": "K線圖",
+        "browser": "瀏覽器",
         "open": "開盤",
         "high": "最高",
         "low": "最低",
@@ -77,6 +82,13 @@ TRANSLATIONS = {
         "pe_ratio": "本益比",
         "eps": "每股盈餘",
         "dividend_yield": "殖利率",
+        "market_data": "市場數據",
+        "valuation": "估值指標",
+        "profitability": "獲利指標",
+        "cash_flow": "現金流",
+        "risk": "風險指標",
+        "growth": "成長指標",
+        "analysts": "分析師",
         "no_data": "無資料",
         "set_alert": "設定提醒",
         "alert_high": "高位價",
@@ -94,6 +106,78 @@ TRANSLATIONS = {
         "switch_watchlist": "切換清單",
         "confirm_delete": "確定要刪除嗎？",
         "watchlist_name": "清單名稱",
+        "loading": "載入中...",
+        "load_failed": "載入失敗",
+        "chart_hint": "滑鼠移至K線區域，查看：開高低收、成交量、K值、D值、MA5、MA20",
+        "prev_close": "昨收",
+        "forward_pe": "遠期本益比",
+        "peg_ratio": "本益成長比",
+        "pb_ratio": "股價淨值比",
+        "ev_ebitda": "企業價值/EBITDA",
+        "roe": "股東權益報酬率",
+        "roa": "資產報酬率",
+        "operating_margin": "營業利益率",
+        "profit_margin": "稅後淨利率",
+        "fcf_yield": "自由現金流殖利率",
+        "fcf_coverage": "自由現金流覆蓋率",
+        "beta": "Beta",
+        "short_ratio": "放空比例",
+        "quick_ratio": "速動比率",
+        "high_52w": "52週最高",
+        "low_52w": "52週最低",
+        "revenue_growth": "營收成長率",
+        "earnings_growth": "盈餘成長率",
+        "target_mean": "目標價均值",
+        "target_median": "目標價中位數",
+        "num_analysts": "分析師數量",
+        "held_insiders": "內部持股",
+        "held_institutions": "機構持股",
+        "operating_cash_flow": "營業現金流",
+        "free_cash_flow": "自由現金流",
+        "cash_flow_yield": "現金流殖利率",
+        "cash_flow_coverage": "現金流覆蓋率",
+        "opening": "開盤",
+        "high_price": "最高",
+        "low_price": "最低",
+        "closing": "收盤",
+        "target_price_mean": "分析師平均目標價",
+        "target_price_median": "分析師中位數目標價",
+        "num_analysts_count": "分析師數量",
+        "insider_holdings": "內部持股",
+        "institutional_holdings": "機構持股",
+        "revenue_growth": "營收成長率",
+        "earnings_growth": "盈餘成長率",
+        "total_revenue": "季度營收",
+        "total_cash": "總現金",
+        "total_liabilities": "總負債",
+        "recommendation": "推薦等級",
+        "range_position": "目前位置",
+        "no_news": "暫無相關新聞",
+        "roic": "投入資本報酬率",
+        "52w_range": "52週區間",
+        "operating_cash_flow_label": "營運現金流",
+        "free_cash_flow_label": "自由現金流",
+        "fcf_yield_label": "現金流殖利率",
+        "fcf_coverage_label": "現金流覆蓋率",
+        "press_refresh": "按「更新本頁」取得報價",
+        "no_results": "無搜尋結果",
+        "date_label": "日期",
+        "open_label": "開",
+        "high_label": "高",
+        "low_label": "低",
+        "close_label": "收",
+        "enter_new_name": "輸入新觀測清單名稱:",
+        "name_exists": "清單名稱已存在或建立失敗",
+        "enter_rename": "輸入新的清單名稱:",
+        "rename_failed": "重命名失敗，名稱可能已存在",
+        "cannot_delete_default": "無法刪除預設清單",
+        "confirm_delete_watchlist": "確定要刪除觀測清單",
+        "delete_failed": "刪除失敗",
+        "enter_high_price": "輸入高位價格",
+        "enter_low_price": "輸入低位價格",
+        "save_alert": "儲存提醒",
+        "stock_load_error": "無法載入股票數據",
+        "window_starting": "桌面視窗啟動中...",
     },
     "zh-CN": {
         "app_title": "yfWL 全球股市看盘",
@@ -118,9 +202,12 @@ TRANSLATIONS = {
         "theme_mist_purple": "雾紫透玻璃",
         "theme_jade_green": "青绿透玻璃",
         "auto_update": "自动更新",
-        "manual_update_current": "更新当前页面",
-        "manual_update_all": "更新全部报价",
+        "manual_update_current": "更新本页",
+        "manual_update_all": "更新全部",
         "last_update": "最后更新",
+        "updating": "更新中...",
+        "updating_all": "正在更新全部清单...",
+        "update_complete": "✓ 完成",
         "price_alert": "价格提醒",
         "delay_warning": "⚠️ 报价资讯延迟至少15~20分钟。所有信息仅供参考，实际交易价格请以券商或交易所为准。",
         "basic_info": "基本信息",
@@ -129,6 +216,8 @@ TRANSLATIONS = {
         "daily": "日线",
         "weekly": "周线",
         "monthly": "月线",
+        "k_line_chart": "K线图",
+        "browser": "浏览器",
         "open": "开盘",
         "high": "最高",
         "low": "最低",
@@ -140,6 +229,13 @@ TRANSLATIONS = {
         "pe_ratio": "市盈率",
         "eps": "每股收益",
         "dividend_yield": "股息率",
+        "market_data": "市场数据",
+        "valuation": "估值指标",
+        "profitability": "获利指标",
+        "cash_flow": "现金流",
+        "risk": "风险指标",
+        "growth": "成长指标",
+        "analysts": "分析师",
         "no_data": "无数据",
         "set_alert": "设置提醒",
         "alert_high": "高位价",
@@ -150,6 +246,85 @@ TRANSLATIONS = {
         "ticker": "代码",
         "price": "现价",
         "actions": "操作",
+        "watchlist": "观测清单",
+        "new_watchlist": "新建清单",
+        "rename": "重命名",
+        "delete_watchlist": "删除清单",
+        "switch_watchlist": "切换清单",
+        "confirm_delete": "确定要删除吗？",
+        "watchlist_name": "清单名称",
+        "loading": "加载中...",
+        "load_failed": "加载失败",
+        "chart_hint": "鼠标移至K线区域，查看：开高低收、成交量、K值、D值、MA5、MA20",
+        "prev_close": "昨收",
+        "forward_pe": "远期市盈率",
+        "peg_ratio": "市盈增长比",
+        "pb_ratio": "市净率",
+        "ev_ebitda": "企业价值/EBITDA",
+        "roe": "净资产收益率",
+        "roa": "总资产收益率",
+        "operating_margin": "营业利润率",
+        "profit_margin": "净利润率",
+        "fcf_yield": "自由现金流收益率",
+        "fcf_coverage": "自由现金流覆盖率",
+        "beta": "Beta",
+        "short_ratio": "做空比例",
+        "quick_ratio": "速动比率",
+        "high_52w": "52周最高",
+        "low_52w": "52周最低",
+        "revenue_growth": "营收增长率",
+        "earnings_growth": "盈余增长率",
+        "target_mean": "目标价均值",
+        "target_median": "目标价中位数",
+        "num_analysts": "分析师数量",
+        "held_insiders": "内部持股",
+        "held_institutions": "机构持股",
+        "operating_cash_flow": "营业现金流",
+        "free_cash_flow": "自由现金流",
+        "cash_flow_yield": "现金流收益率",
+        "cash_flow_coverage": "现金流覆盖率",
+        "opening": "开盘",
+        "high_price": "最高",
+        "low_price": "最低",
+        "closing": "收盘",
+        "target_price_mean": "分析师平均目标价",
+        "target_price_median": "分析师中位数目标价",
+        "num_analysts_count": "分析师数量",
+        "insider_holdings": "内部持股",
+        "institutional_holdings": "机构持股",
+        "revenue_growth": "营收增长率",
+        "earnings_growth": "盈余增长率",
+        "total_revenue": "季度营收",
+        "total_cash": "总现金",
+        "total_liabilities": "总负债",
+        "recommendation": "推荐等级",
+        "range_position": "目前位置",
+        "no_news": "暂无相关新闻",
+        "roic": "投入资本报酬率",
+        "52w_range": "52周区间",
+        "operating_cash_flow_label": "营运现金流",
+        "free_cash_flow_label": "自由现金流",
+        "fcf_yield_label": "现金流收益率",
+        "fcf_coverage_label": "现金流覆盖率",
+        "press_refresh": "按「更新本页」取得报价",
+        "no_results": "无搜索结果",
+        "date_label": "日期",
+        "open_label": "开",
+        "high_label": "高",
+        "low_label": "低",
+        "close_label": "收",
+        "enter_new_name": "输入新观测清单名称:",
+        "name_exists": "清单名称已存在或建立失败",
+        "enter_rename": "输入新的清单名称:",
+        "rename_failed": "重命名失败，名称可能已存在",
+        "cannot_delete_default": "无法删除预设清单",
+        "confirm_delete_watchlist": "确定要删除观测清单",
+        "delete_failed": "删除失败",
+        "enter_high_price": "输入高位价格",
+        "enter_low_price": "输入低位价格",
+        "save_alert": "储存提醒",
+        "stock_load_error": "无法加载股票数据",
+        "window_starting": "桌面窗口启动中...",
     },
     "en": {
         "app_title": "yfWL Global Stock Monitor",
@@ -174,9 +349,12 @@ TRANSLATIONS = {
         "theme_mist_purple": "Mist Purple Glass",
         "theme_jade_green": "Jade Green Glass",
         "auto_update": "Auto Update",
-        "manual_update_current": "Update Current",
-        "manual_update_all": "Update All",
+        "manual_update_current": "Refresh",
+        "manual_update_all": "Refresh All",
         "last_update": "Last Update",
+        "updating": "Updating...",
+        "updating_all": "Updating all lists...",
+        "update_complete": "✓ Done",
         "price_alert": "Price Alert",
         "delay_warning": "⚠️ Quotes delayed 15-20 min. For reference only, actual trading price should be based on broker or exchange.",
         "basic_info": "Basic Info",
@@ -185,6 +363,8 @@ TRANSLATIONS = {
         "daily": "Daily",
         "weekly": "Weekly",
         "monthly": "Monthly",
+        "k_line_chart": "K-Line Chart",
+        "browser": "Browser",
         "open": "Open",
         "high": "High",
         "low": "Low",
@@ -196,6 +376,13 @@ TRANSLATIONS = {
         "pe_ratio": "P/E Ratio",
         "eps": "EPS",
         "dividend_yield": "Div Yield",
+        "market_data": "Market Data",
+        "valuation": "Valuation",
+        "profitability": "Profitability",
+        "cash_flow": "Cash Flow",
+        "risk": "Risk",
+        "growth": "Growth",
+        "analysts": "Analysts",
         "no_data": "No Data",
         "set_alert": "Set Alert",
         "alert_high": "High Alert",
@@ -206,6 +393,85 @@ TRANSLATIONS = {
         "ticker": "Ticker",
         "price": "Price",
         "actions": "Actions",
+        "watchlist": "Watchlist",
+        "new_watchlist": "New List",
+        "rename": "Rename",
+        "delete_watchlist": "Delete List",
+        "switch_watchlist": "Switch List",
+        "confirm_delete": "Are you sure you want to delete?",
+        "watchlist_name": "List Name",
+        "loading": "Loading...",
+        "load_failed": "Load Failed",
+        "chart_hint": "Hover over K-line to view: OHLC, Volume, K, D, MA5, MA20",
+        "prev_close": "Prev Close",
+        "forward_pe": "Forward P/E",
+        "peg_ratio": "PEG Ratio",
+        "pb_ratio": "P/B Ratio",
+        "ev_ebitda": "EV/EBITDA",
+        "roe": "ROE",
+        "roa": "ROA",
+        "operating_margin": "Operating Margin",
+        "profit_margin": "Profit Margin",
+        "fcf_yield": "FCF Yield",
+        "fcf_coverage": "FCF Coverage",
+        "beta": "Beta",
+        "short_ratio": "Short Ratio",
+        "quick_ratio": "Quick Ratio",
+        "high_52w": "52W High",
+        "low_52w": "52W Low",
+        "revenue_growth": "Revenue Growth",
+        "earnings_growth": "Earnings Growth",
+        "target_mean": "Target Mean",
+        "target_median": "Target Median",
+        "num_analysts": "# of Analysts",
+        "held_insiders": "Insiders",
+        "held_institutions": "Institutions",
+        "operating_cash_flow": "Operating Cash Flow",
+        "free_cash_flow": "Free Cash Flow",
+        "cash_flow_yield": "Cash Flow Yield",
+        "cash_flow_coverage": "Cash Flow Coverage",
+        "opening": "Open",
+        "high_price": "High",
+        "low_price": "Low",
+        "closing": "Close",
+        "target_price_mean": "Analyst Target Mean",
+        "target_price_median": "Analyst Target Median",
+        "num_analysts_count": "Number of Analysts",
+        "insider_holdings": "Insider Holdings",
+        "institutional_holdings": "Institutional Holdings",
+        "revenue_growth": "Revenue Growth",
+        "earnings_growth": "Earnings Growth",
+        "total_revenue": "Quarterly Revenue",
+        "total_cash": "Total Cash",
+        "total_liabilities": "Total Liabilities",
+        "recommendation": "Recommendation",
+        "range_position": "Range Position",
+        "no_news": "No Related News",
+        "roic": "ROIC",
+        "52w_range": "52W Range",
+        "operating_cash_flow_label": "Operating Cash Flow",
+        "free_cash_flow_label": "Free Cash Flow",
+        "fcf_yield_label": "FCF Yield",
+        "fcf_coverage_label": "FCF Coverage",
+        "press_refresh": "Press 'Refresh' to load quotes",
+        "no_results": "No results found",
+        "date_label": "Date",
+        "open_label": "Open",
+        "high_label": "High",
+        "low_label": "Low",
+        "close_label": "Close",
+        "enter_new_name": "Enter new watchlist name:",
+        "name_exists": "Name already exists or creation failed",
+        "enter_rename": "Enter new list name:",
+        "rename_failed": "Rename failed, name may already exist",
+        "cannot_delete_default": "Cannot delete default list",
+        "confirm_delete_watchlist": "Are you sure you want to delete watchlist",
+        "delete_failed": "Delete failed",
+        "enter_high_price": "Enter high alert price",
+        "enter_low_price": "Enter low alert price",
+        "save_alert": "Save Alert",
+        "stock_load_error": "Failed to load stock data",
+        "window_starting": "Starting desktop window...",
     },
 }
 
@@ -927,7 +1193,7 @@ def render_quote_row(item, index):
 
 def render_search_results(results):
     if not results:
-        return Div(P("無結果"), cls="no-results")
+        return Div(P(get_t(None, "no_results")), cls="no-results")
     
     items = []
     for r in results:
@@ -1092,7 +1358,7 @@ def main_page():
     else:
         # 沒有快取，顯示清單名稱（不抓 Yahoo）
         table_body = NotStr("".join([
-            f'<tr data-ticker="{item["ticker"]}"><td>{item["name"]}</td><td>{item["ticker"]}</td><td colspan="5" style="color:#888;">按「更新本頁」取得報價</td></tr>'
+            f'<tr data-ticker="{item["ticker"]}"><td>{item["name"]}</td><td>{item["ticker"]}</td><td colspan="5" style="color:#888;">{get_t(None, "press_refresh")}</td></tr>'
             for item in watchlist
         ]))
     
@@ -1194,12 +1460,12 @@ def main_page():
                 Div(
                     H3(id="chart-title", style="color:#e0e0e0;margin:0;font-size:16px;flex-shrink:0;"),
                     Div(
-                        Button("日線", id="btn_day", onclick="switchCycle('day')", cls="btn btn-sm active"),
-                        Button("週線", id="btn_week", onclick="switchCycle('week')", cls="btn btn-sm"),
-                        Button("月線", id="btn_month", onclick="switchCycle('month')", cls="btn btn-sm"),
+                        Button(get_t(None, "daily"), id="btn_day", onclick="switchCycle('day')", cls="btn btn-sm active"),
+                        Button(get_t(None, "weekly"), id="btn_week", onclick="switchCycle('week')", cls="btn btn-sm"),
+                        Button(get_t(None, "monthly"), id="btn_month", onclick="switchCycle('month')", cls="btn btn-sm"),
                         Button("KDJ", id="btn_kd", onclick="switchIndicator('kd')", cls="btn btn-sm active"),
                         Button("MACD", id="btn_macd", onclick="switchIndicator('macd')", cls="btn btn-sm"),
-                        A("🌐瀏覽器", id="chart-yahoo-link", href="https://finance.yahoo.com/quote/NVDA/chart", target="_blank", cls="btn btn-sm btn-primary"),
+                        A("🌐" + get_t(None, "browser"), id="chart-yahoo-link", href="https://finance.yahoo.com/quote/NVDA/chart", target="_blank", cls="btn btn-sm btn-primary"),
                         style="display:flex;gap:6px;flex-wrap:wrap;margin-left:12px;"
                     ),
                     Button("✕", onclick="closeChartPanel()", style="margin-left:auto;background:none;border:none;color:#aaa;font-size:20px;cursor:pointer;flex-shrink:0;"),
@@ -1224,14 +1490,28 @@ def get_main_script():
 let currentSettings = {};
 let lastUpdateTimer = null;
 let autoUpdateInterval = 0;
+let translations = {};
 
 // ==================== 初始化 ====================
 document.addEventListener('DOMContentLoaded', function() {
-    loadSettings();
-    startAutoUpdate();
-    // 顯示快取提示
-    showCacheNotice();
+    loadTranslations().then(() => {
+        loadSettings();
+        startAutoUpdate();
+        showCacheNotice();
+    });
 });
+
+function loadTranslations() {
+    return fetch('/api/translations')
+        .then(r => r.json())
+        .then(data => {
+            translations = data;
+        });
+}
+
+function t(key) {
+    return translations[key] || key;
+}
 
 function showCacheNotice() {
     const notice = document.getElementById('cache-notice');
@@ -1239,8 +1519,9 @@ function showCacheNotice() {
     fetch('/api/watchlist/rows').then(r => r.json()).then(data => {
         if (data.cached && data.updated) {
             const d = new Date(data.updated * 1000);
-            const timeStr = d.toLocaleString('zh-TW', {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
-            notice.textContent = '目前顯示的是上次快取的股價(' + timeStr + ')，按「更新本頁」或「更新全部」可取得最新報價';
+            const locale = currentSettings.language === 'en' ? 'en-US' : currentSettings.language === 'zh-CN' ? 'zh-CN' : 'zh-TW';
+            const timeStr = d.toLocaleString(locale, {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
+            notice.textContent = t('last_update') + ': ' + timeStr;
             notice.style.display = 'inline-block';
         }
     });
@@ -1303,7 +1584,9 @@ function saveSettings() {
     }).then(() => {
         applySettings();
         closeSettings();
-        if (pendingSettings['language']) location.reload();
+        if (pendingSettings['language']) {
+            fetch('/api/cache/invalidate', { method: 'POST' }).then(() => location.reload());
+        }
         pendingSettings = {};
     });
 }
@@ -1315,14 +1598,17 @@ function updateSetting(key, value) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(currentSettings)
     }).then(() => {
-        applySettings();
-        if (key === 'language') location.reload();
+        if (key === 'language') {
+            fetch('/api/cache/invalidate', { method: 'POST' }).then(() => location.reload());
+        } else {
+            applySettings();
+        }
     });
 }
 
 function updateFontSize(value) {
     document.querySelector('.setting-group label:last-of-type').textContent = 
-        `字體大小: ${value}px`;
+        t('font_size') + ': ' + value + 'px';
     updateSetting('font_size', parseInt(value));
 }
 
@@ -1367,7 +1653,7 @@ function handleSearch(query) {
                         </div>`;
                     });
                 }
-                if (!html) html = '<div class="no-results">無搜尋結果</div>';
+                if (!html) html = '<div class="no-results">' + t('no_results') + '</div>';
                 resultsDiv.innerHTML = html;
                 resultsDiv.classList.add('show');
             });
@@ -1464,7 +1750,7 @@ function closeDetail() {
 
 function loadDetailTab(ticker, tab) {
     var modal = document.getElementById('detail-modal');
-    modal.innerHTML = '<div class="loading">載入中...</div>';
+    modal.innerHTML = '<div class="loading">' + t('loading') + '</div>';
     
     var url = new URL('/api/stock/' + ticker, window.location.origin);
     url.searchParams.append('tab', tab);
@@ -1475,7 +1761,7 @@ function loadDetailTab(ticker, tab) {
             modal.innerHTML = html;
         })
         .catch(function(err) {
-            modal.innerHTML = '<div class="loading">載入失敗: ' + err + '</div>';
+            modal.innerHTML = '<div class="loading">' + t('load_failed') + ': ' + err + '</div>';
         });
 }
 
@@ -1535,11 +1821,11 @@ function updateInfoPanel(item) {
             '<span style="color:' + macdColor + ';margin-right:12px;">MACD:' + numFmt(item.MACD) + '</span>';
     }
     infoDom.innerHTML =
-        '<span style="margin-right:12px;">日期:' + item.date + '</span>' +
-        '<span style="color:#4cd964;margin-right:8px;">開:' + numFmt(item.open) + '</span>' +
-        '<span style="color:#4cd964;margin-right:8px;">高:' + numFmt(item.high) + '</span>' +
-        '<span style="color:#ff5e57;margin-right:8px;">低:' + numFmt(item.low) + '</span>' +
-        '<span style="color:' + closeColor + ';margin-right:8px;">收:' + numFmt(item.close) + '</span>' +
+        '<span style="margin-right:12px;">' + t('date_label') + ':' + item.date + '</span>' +
+        '<span style="color:#4cd964;margin-right:8px;">' + t('open_label') + ':' + numFmt(item.open) + '</span>' +
+        '<span style="color:#4cd964;margin-right:8px;">' + t('high_label') + ':' + numFmt(item.high) + '</span>' +
+        '<span style="color:#ff5e57;margin-right:8px;">' + t('low_label') + ':' + numFmt(item.low) + '</span>' +
+        '<span style="color:' + closeColor + ';margin-right:8px;">' + t('close_label') + ':' + numFmt(item.close) + '</span>' +
         '<span style="color:#4cd964;margin-right:12px;">Vol:' + volM + 'M</span>' +
         indicatorHtml +
         '<span style="color:#2196F3;margin-right:8px;">MA5:' + numFmt(item.MA5) + '</span>' +
@@ -1695,7 +1981,7 @@ async function switchCycle(cycle) {
         if (typeof json === "string") json = JSON.parse(json);
         chartData = json;
         applyData();
-        document.getElementById("chart-info").innerHTML = "滑鼠移至K線區域，查看：開高低收、成交量、K值、D值、MA5、MA20";
+        document.getElementById("chart-info").innerHTML = t('chart_hint');
     } catch (e) {
         console.error("switchCycle error:", e);
     }
@@ -1726,7 +2012,7 @@ window.switchIndicator = switchIndicator;
 
 function openChartPanel(ticker) {
     chartTicker = ticker;
-    document.getElementById('chart-title').textContent = ticker + ' K線圖';
+    document.getElementById('chart-title').textContent = ticker + ' ' + t('k_line_chart');
     var yahooLink = document.getElementById('chart-yahoo-link');
     if (yahooLink) yahooLink.href = 'https://finance.yahoo.com/quote/' + ticker + '/chart';
     document.getElementById('chart-panel').style.display = 'flex';
@@ -1748,10 +2034,10 @@ function openChartPanel(ticker) {
             .then(function(d) {
                 chartData = d;
                 initAllCharts();
-                document.getElementById("chart-info").innerHTML = "滑鼠移至K線區域，查看：開高低收、成交量、K值、D值、MA5、MA20";
+                document.getElementById("chart-info").innerHTML = t('chart_hint');
             })
             .catch(function(e) {
-                document.getElementById('chart_kline').innerHTML = '<p style="color:red;padding:20px;">載入失敗: ' + e.message + '</p>';
+                document.getElementById('chart_kline').innerHTML = '<p style="color:red;padding:20px;">' + t('load_failed') + ': ' + e.message + '</p>';
             });
     }, 300);
 }
@@ -1778,19 +2064,19 @@ function loadAlertForm(ticker) {
             document.getElementById('alert-modal').innerHTML = `
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3>價格提醒 - ${ticker}</h3>
+                        <h3>${t('price_alert')} - ${ticker}</h3>
                         <button class="close-btn" onclick="closeAlertModal()">×</button>
                     </div>
                     <div class="modal-body">
                         <div class="setting-group">
-                            <label>高位價提醒</label>
-                            <input type="number" id="alert-high" step="0.01" value="${data.high || ''}" placeholder="輸入高位價格">
+                            <label>${t('alert_high')}</label>
+                            <input type="number" id="alert-high" step="0.01" value="${data.high || ''}" placeholder="${t('enter_high_price')}">
                         </div>
                         <div class="setting-group">
-                            <label>低位價提醒</label>
-                            <input type="number" id="alert-low" step="0.01" value="${data.low || ''}" placeholder="輸入低位價格">
+                            <label>${t('alert_low')}</label>
+                            <input type="number" id="alert-low" step="0.01" value="${data.low || ''}" placeholder="${t('enter_low_price')}">
                         </div>
-                        <button class="btn btn-primary" onclick="saveAlert('${ticker}')">儲存提醒</button>
+                        <button class="btn btn-primary" onclick="saveAlert('${ticker}')">${t('save_alert')}</button>
                     </div>
                 </div>
             `;
@@ -1833,8 +2119,8 @@ function switchWatchlist(name) {
 function refreshQuotes() {
     const tbody = document.getElementById('quote-table-body');
     const btn = document.getElementById('btn-refresh-quotes');
-    if (btn) { btn.disabled = true; btn.textContent = '更新中...'; }
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:#aaa;" id="loading-msg">正在更新報價... <span id="update-progress"></span></td></tr>';
+    if (btn) { btn.disabled = true; btn.textContent = t('updating'); }
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:#aaa;" id="loading-msg">' + t('updating') + ' <span id="update-progress"></span></td></tr>';
     
     // 先啟動背景更新
     fetch('/api/refresh', { method: 'POST' });
@@ -1847,12 +2133,12 @@ function refreshQuotes() {
             if (el) el.textContent = p.current + '/' + p.total + ' (' + p.pct + '%)';
             if (!p.running) {
                 clearInterval(progressTimer);
-                    if (el) el.textContent = '✓ 完成';
+                    if (el) el.textContent = t('update_complete');
                 // 載入最新表格（用 refresh=true 從 Yahoo 抓取）
                 fetch('/api/watchlist/rows?refresh=true').then(r => r.json()).then(data => {
                     tbody.innerHTML = data.html;
                     updateLastTime(data.updated);
-                    if (btn) { btn.disabled = false; btn.textContent = '🔄 更新本頁'; }
+                    if (btn) { btn.disabled = false; btn.textContent = '🔄 ' + t('manual_update_current'); }
                     // 更新後隱藏快取提示
                     var cn = document.getElementById('cache-notice');
                     if (cn) cn.style.display = 'none';
@@ -1865,8 +2151,8 @@ function refreshQuotes() {
 function refreshAllWatchlists() {
     const btn = document.getElementById('btn-refresh-all');
     const tbody = document.getElementById('quote-table-body');
-    if (btn) { btn.disabled = true; btn.textContent = '更新中...'; }
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:#aaa;" id="loading-msg">正在更新全部清單... <span id="update-progress"></span></td></tr>';
+    if (btn) { btn.disabled = true; btn.textContent = t('updating'); }
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:#aaa;" id="loading-msg">' + t('updating_all') + ' <span id="update-progress"></span></td></tr>';
     
     // 先啟動背景更新
     fetch('/api/refresh/all', { method: 'POST' });
@@ -1879,12 +2165,12 @@ function refreshAllWatchlists() {
             if (el) el.textContent = p.current + '/' + p.total + ' (' + p.pct + '%)';
             if (!p.running) {
                 clearInterval(progressTimer);
-                if (el) el.textContent = '✓ 完成';
+                if (el) el.textContent = t('update_complete');
                 // 載入最新表格（用 refresh=true 從 Yahoo 抓取）
                 fetch('/api/watchlist/rows?refresh=true').then(r => r.json()).then(d => {
                     tbody.innerHTML = d.html;
                     updateLastTime(d.updated);
-                    if (btn) { btn.disabled = false; btn.textContent = '🔄 更新全部'; }
+                    if (btn) { btn.disabled = false; btn.textContent = '🔄 ' + t('manual_update_all'); }
                     // 更新後隱藏快取提示
                     var cn = document.getElementById('cache-notice');
                     if (cn) cn.style.display = 'none';
@@ -1925,13 +2211,14 @@ function refreshAll() {
 function updateLastTime(ts) {
     if (!ts) return;
     const d = new Date(ts * 1000);
-    const timeStr = d.toLocaleTimeString('zh-TW', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+    const locale = currentSettings.language === 'en' ? 'en-US' : currentSettings.language === 'zh-CN' ? 'zh-CN' : 'zh-TW';
+    const timeStr = d.toLocaleTimeString(locale, {hour:'2-digit', minute:'2-digit', second:'2-digit'});
     const el = document.getElementById('last-update-time');
-    if (el) el.textContent = '最後更新: ' + timeStr;
+    if (el) el.textContent = t('last_update') + ': ' + timeStr;
 }
 
 function createWatchlist() {
-    const name = prompt('輸入新觀測清單名稱:');
+    const name = prompt(t('enter_new_name'));
     if (name && name.trim()) {
         fetch('/api/watchlists/create', {
             method: 'POST',
@@ -1942,7 +2229,7 @@ function createWatchlist() {
                 refreshWatchlistSelect(name.trim());
                 refreshTable();
             } else {
-                alert('清單名稱已存在或建立失敗');
+                alert(t('name_exists'));
             }
         });
     }
@@ -1951,7 +2238,7 @@ function createWatchlist() {
 function renameWatchlist() {
     const select = document.getElementById('watchlist-select');
     const oldName = select.value;
-    const newName = prompt('輸入新的清單名稱:', oldName);
+    const newName = prompt(t('enter_rename'), oldName);
     if (newName && newName.trim() && newName.trim() !== oldName) {
         fetch('/api/watchlists/rename', {
             method: 'POST',
@@ -1961,7 +2248,7 @@ function renameWatchlist() {
             if (data.success) {
                 refreshWatchlistSelect(newName.trim());
             } else {
-                alert('重命名失敗，名稱可能已存在');
+                alert(t('rename_failed'));
             }
         });
     }
@@ -1971,10 +2258,10 @@ function deleteWatchlist() {
     const select = document.getElementById('watchlist-select');
     const name = select.value;
     if (name === 'default') {
-        alert('無法刪除預設清單');
+        alert(t('cannot_delete_default'));
         return;
     }
-    if (confirm(`確定要刪除觀測清單 "${name}" 嗎？`)) {
+    if (confirm(t('confirm_delete_watchlist') + ' "' + name + '"?')) {
         fetch('/api/watchlists/delete', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -1984,7 +2271,7 @@ function deleteWatchlist() {
                 refreshWatchlistSelect('default');
                 refreshTable();
             } else {
-                alert('刪除失敗');
+                alert(t('delete_failed'));
             }
         });
     }
@@ -2019,6 +2306,11 @@ def post(settings: dict):
     store.update_settings(settings)
     return {"success": True}
 
+@rt("/api/translations")
+def get():
+    lang = store.get_settings().get("language", "zh-TW")
+    return TRANSLATIONS.get(lang, TRANSLATIONS["zh-TW"])
+
 @rt("/api/settings/modal")
 def get():
     return NotStr(render_settings_modal_raw())
@@ -2046,7 +2338,7 @@ def post(item: dict):
         for w in watchlist:
             data = quotes.get(w["ticker"])
             if not data:
-                html += f'<tr data-ticker="{w["ticker"]}"><td>{w["name"]}</td><td>{w["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{w["ticker"]}\')">瀏覽</button></td></tr>'
+                html += f'<tr data-ticker="{w["ticker"]}"><td>{w["name"]}</td><td>{w["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{w["ticker"]}\')">{get_t(None, "browse")}</button></td></tr>'
                 continue
             change_class = "price-up" if data["change"] >= 0 else "price-down"
             change_sign = "+" if data["change"] >= 0 else ""
@@ -2058,12 +2350,12 @@ def post(item: dict):
                 <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
                 <td class="volume">{fmt_num(data['volume'])}</td>
                 <td class="actions">
-                    <button class="btn btn-sm btn-primary" onclick="openDetail('{w["ticker"]}')">瀏覽</button>
+                    <button class="btn btn-sm btn-primary" onclick="openDetail('{w["ticker"]}')">{get_t(None, "browse")}</button>
                     <button class="btn btn-sm" onclick="openChartPanel('{w["ticker"]}')">📊</button>
                     <button class="btn btn-sm" onclick="openAlertModal('{w["ticker"]}')">🔔</button>
                     <button class="btn btn-sm" onclick="moveItem('{w["ticker"]}', -1)">↑</button>
                     <button class="btn btn-sm" onclick="moveItem('{w["ticker"]}', 1)">↓</button>
-                    <button class="btn btn-sm btn-danger" onclick="removeItem('{w["ticker"]}')">刪除</button>
+                    <button class="btn btn-sm btn-danger" onclick="removeItem(\'{w["ticker"]}\')">{get_t(None, "remove")}</button>
                 </td>
             </tr>'''
         rows_cache.set(store.get_current_watchlist_name(), html)
@@ -2081,7 +2373,7 @@ def delete(ticker: str):
     for w in watchlist:
         data = quotes.get(w["ticker"])
         if not data:
-            html += f'<tr data-ticker="{w["ticker"]}"><td>{w["name"]}</td><td>{w["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{w["ticker"]}\')">瀏覽</button></td></tr>'
+            html += f'<tr data-ticker="{w["ticker"]}"><td>{w["name"]}</td><td>{w["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{w["ticker"]}\')">{get_t(None, "browse")}</button></td></tr>'
             continue
         change_class = "price-up" if data["change"] >= 0 else "price-down"
         change_sign = "+" if data["change"] >= 0 else ""
@@ -2093,12 +2385,12 @@ def delete(ticker: str):
             <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
             <td class="volume">{fmt_num(data['volume'])}</td>
             <td class="actions">
-                <button class="btn btn-sm btn-primary" onclick="openDetail('{w["ticker"]}')">瀏覽</button>
+                <button class="btn btn-sm btn-primary" onclick="openDetail('{w["ticker"]}')">{get_t(None, "browse")}</button>
                 <button class="btn btn-sm" onclick="openChartPanel('{w["ticker"]}')">📊</button>
                 <button class="btn btn-sm" onclick="openAlertModal('{w["ticker"]}')">🔔</button>
                 <button class="btn btn-sm" onclick="moveItem('{w["ticker"]}', -1)">↑</button>
                 <button class="btn btn-sm" onclick="moveItem('{w["ticker"]}', 1)">↓</button>
-                <button class="btn btn-sm btn-danger" onclick="removeItem('{w["ticker"]}')">刪除</button>
+                <button class="btn btn-sm btn-danger" onclick="removeItem(\'{w["ticker"]}\')">{get_t(None, "remove")}</button>
             </td>
         </tr>'''
     rows_cache.set(store.get_current_watchlist_name(), html)
@@ -2116,7 +2408,7 @@ def post(data: dict):
     for w in watchlist:
         d = quotes.get(w["ticker"])
         if not d:
-            html += f'<tr data-ticker="{w["ticker"]}"><td>{w["name"]}</td><td>{w["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{w["ticker"]}\')">瀏覽</button></td></tr>'
+            html += f'<tr data-ticker="{w["ticker"]}"><td>{w["name"]}</td><td>{w["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{w["ticker"]}\')">{get_t(None, "browse")}</button></td></tr>'
             continue
         change_class = "price-up" if d["change"] >= 0 else "price-down"
         change_sign = "+" if d["change"] >= 0 else ""
@@ -2128,12 +2420,12 @@ def post(data: dict):
             <td class="change {change_class}">{change_sign}{d['change_pct']:.2f}%</td>
             <td class="volume">{fmt_num(d['volume'])}</td>
             <td class="actions">
-                <button class="btn btn-sm btn-primary" onclick="openDetail('{w["ticker"]}')">瀏覽</button>
+                <button class="btn btn-sm btn-primary" onclick="openDetail('{w["ticker"]}')">{get_t(None, "browse")}</button>
                 <button class="btn btn-sm" onclick="openChartPanel('{w["ticker"]}')">📊</button>
                 <button class="btn btn-sm" onclick="openAlertModal('{w["ticker"]}')">🔔</button>
                 <button class="btn btn-sm" onclick="moveItem('{w["ticker"]}', -1)">↑</button>
                 <button class="btn btn-sm" onclick="moveItem('{w["ticker"]}', 1)">↓</button>
-                <button class="btn btn-sm btn-danger" onclick="removeItem('{w["ticker"]}')">刪除</button>
+                <button class="btn btn-sm btn-danger" onclick="removeItem(\'{w["ticker"]}\')">{get_t(None, "remove")}</button>
             </td>
         </tr>'''
     rows_cache.set(store.get_current_watchlist_name(), html)
@@ -2174,7 +2466,7 @@ def get(refresh: bool = False):
     for item in watchlist:
         data = quotes.get(item["ticker"])
         if not data:
-            html += f'<tr data-ticker="{item["ticker"]}"><td>{item["name"]}</td><td>{item["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{item["ticker"]}\')">瀏覽</button></td></tr>'
+            html += f'<tr data-ticker="{item["ticker"]}"><td>{item["name"]}</td><td>{item["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{item["ticker"]}\')">{get_t(None, "browse")}</button></td></tr>'
             continue
         change_class = "price-up" if data["change"] >= 0 else "price-down"
         change_sign = "+" if data["change"] >= 0 else ""
@@ -2186,12 +2478,12 @@ def get(refresh: bool = False):
             <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
             <td class="volume">{fmt_num(data['volume'])}</td>
             <td class="actions">
-                <button class="btn btn-sm btn-primary" onclick="openDetail('{item["ticker"]}')">瀏覽</button>
+                <button class="btn btn-sm btn-primary" onclick="openDetail('{item["ticker"]}')">{get_t(None, "browse")}</button>
                 <button class="btn btn-sm" onclick="openChartPanel('{item["ticker"]}')">📊</button>
                 <button class="btn btn-sm" onclick="openAlertModal('{item["ticker"]}')">🔔</button>
                 <button class="btn btn-sm" onclick="moveItem('{item["ticker"]}', -1)">↑</button>
                 <button class="btn btn-sm" onclick="moveItem('{item["ticker"]}', 1)">↓</button>
-                <button class="btn btn-sm btn-danger" onclick="removeItem('{item["ticker"]}')">刪除</button>
+                <button class="btn btn-sm btn-danger" onclick="removeItem(\'{item["ticker"]}\')">{get_t(None, "remove")}</button>
             </td>
         </tr>'''
     
@@ -2219,13 +2511,18 @@ def post(data: dict):
     success = store.delete_watchlist(data["name"])
     return {"success": success}
 
+@rt("/api/cache/invalidate")
+def post():
+    rows_cache.invalidate()
+    return {"success": True}
+
 @rt("/api/refresh")
 def post():
     import threading
     def do_refresh():
         watchlist = store.get_watchlist()
         tickers = [item["ticker"] for item in watchlist]
-        progress.start(1, "更新本頁")
+        progress.start(1, get_t(None, "manual_update_current"))
         StockData.get_quotes_batch(tickers, force=True)
         progress.done()
     threading.Thread(target=do_refresh, daemon=True).start()
@@ -2244,7 +2541,7 @@ def post():
             watchlists_data[name] = store.data["watchlists"]["items"].get(name, [])
             total_stocks += len(watchlists_data[name])
             all_tickers.extend([item["ticker"] for item in watchlists_data[name]])
-        progress.start(total_stocks + 1, "更新全部")
+        progress.start(total_stocks + 1, get_t(None, "manual_update_all"))
         # 去重後批量更新
         unique_tickers = list(set(all_tickers))
         StockData.get_quotes_batch(unique_tickers, force=True)
@@ -2256,7 +2553,7 @@ def post():
             for item in watchlist:
                 data = StockData.get_quote(item["ticker"])
                 if not data:
-                    html += f'<tr data-ticker="{item["ticker"]}"><td>{item["name"]}</td><td>{item["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{item["ticker"]}\')">瀏覽</button></td></tr>'
+                    html += f'<tr data-ticker="{item["ticker"]}"><td>{item["name"]}</td><td>{item["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{item["ticker"]}\')">{get_t(None, "browse")}</button></td></tr>'
                     continue
                 change_class = "price-up" if data["change"] >= 0 else "price-down"
                 change_sign = "+" if data["change"] >= 0 else ""
@@ -2268,12 +2565,12 @@ def post():
                     <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
                     <td class="volume">{fmt_num(data['volume'])}</td>
                     <td class="actions">
-                        <button class="btn btn-sm btn-primary" onclick="openDetail('{item["ticker"]}')">瀏覽</button>
+                        <button class="btn btn-sm btn-primary" onclick="openDetail('{item["ticker"]}')">{get_t(None, "browse")}</button>
                         <button class="btn btn-sm" onclick="openChartPanel('{item["ticker"]}')">📊</button>
                         <button class="btn btn-sm" onclick="openAlertModal('{item["ticker"]}')">🔔</button>
                         <button class="btn btn-sm" onclick="moveItem('{item["ticker"]}', -1)">↑</button>
                         <button class="btn btn-sm" onclick="moveItem('{item["ticker"]}', 1)">↓</button>
-                        <button class="btn btn-sm btn-danger" onclick="removeItem('{item["ticker"]}')">刪除</button>
+                        <button class="btn btn-sm btn-danger" onclick="removeItem(\'{item["ticker"]}\')">{get_t(None, "remove")}</button>
                     </td>
                 </tr>'''
             rows_cache.set(name, html)
@@ -2389,7 +2686,7 @@ def get_history_route(ticker: str, range: str = "1y", interval: str = "1d"):
 def get(ticker: str, tab: str = "basic"):
     data = StockData.get_quote(ticker, force=True)
     if not data:
-        return NotStr(f'<div class="modal-content"><div class="modal-header"><h3>Error: {ticker}</h3><button class="close-btn" onclick="closeDetail()">×</button></div><div class="modal-body"><p>無法載入股票數據</p></div></div>')
+        return NotStr(f'<div class="modal-content"><div class="modal-header"><h3>Error: {ticker}</h3><button class="close-btn" onclick="closeDetail()">×</button></div><div class="modal-body"><p>{get_t(None, "stock_load_error")}</p></div></div>')
     
     info = data.get("info", {})
     change_class = "up" if data['change'] >= 0 else "down"
@@ -2428,96 +2725,96 @@ def get(ticker: str, tab: str = "basic"):
             </div>
 
             <div class="info-card">
-                <h4>市場數據</h4>
+                <h4>{get_t(None, "market_data")}</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>開盤</label><span>{fmt_price(data.get('open', 0))}</span></div>
-                    <div class="info-item"><label>最高</label><span>{fmt_price(data.get('high', 0))}</span></div>
-                    <div class="info-item"><label>最低</label><span>{fmt_price(data.get('low', 0))}</span></div>
-                    <div class="info-item"><label>昨收</label><span>{fmt_price(data.get('previous_close', 0))}</span></div>
-                    <div class="info-item"><label>成交量</label><span>{fmt_num(data.get('volume', 0))}</span></div>
-                    <div class="info-item"><label>市值</label><span>${fmt_num(fin.get('market_cap', 0))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "open")}</label><span>{fmt_price(data.get('open', 0))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "high")}</label><span>{fmt_price(data.get('high', 0))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "low")}</label><span>{fmt_price(data.get('low', 0))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "prev_close")}</label><span>{fmt_price(data.get('previous_close', 0))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "volume")}</label><span>{fmt_num(data.get('volume', 0))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "market_cap")}</label><span>${fmt_num(fin.get('market_cap', 0))}</span></div>
                 </div>
             </div>
 
             <div class="info-card">
-                <h4>估值指標</h4>
+                <h4>{get_t(None, "valuation")}</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>本益比 (P/E)</label><span>{fmt(fin.get('pe_ratio'), dec=2)}</span></div>
-                    <div class="info-item"><label>遠期本益比</label><span>{fmt(fin.get('forward_pe'), dec=2)}</span></div>
-                    <div class="info-item"><label>本益成長比 (PEG)</label><span>{fmt(fin.get('peg_ratio'), dec=2)}</span></div>
-                    <div class="info-item"><label>股價淨值比 (PB)</label><span>{fmt(fin.get('pb_ratio'), dec=2)}</span></div>
-                    <div class="info-item"><label>企業價值/EBITDA</label><span>{fmt(fin.get('ev_ebitda'), dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "pe_ratio")} (P/E)</label><span>{fmt(fin.get('pe_ratio'), dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "forward_pe")}</label><span>{fmt(fin.get('forward_pe'), dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "peg_ratio")} (PEG)</label><span>{fmt(fin.get('peg_ratio'), dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "pb_ratio")} (PB)</label><span>{fmt(fin.get('pb_ratio'), dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "ev_ebitda")}</label><span>{fmt(fin.get('ev_ebitda'), dec=2)}</span></div>
                 </div>
             </div>
 
             <div class="info-card">
-                <h4>獲利指標</h4>
+                <h4>{get_t(None, "profitability")}</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>每股盈餘 (EPS)</label><span>{fmt(fin.get('eps'), '$', dec=2)}</span></div>
-                    <div class="info-item"><label>股東權益報酬率 (ROE)</label><span>{fmt(fin.get('roe'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>資產報酬率 (ROA)</label><span>{fmt(fin.get('roa'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>投入資本報酬率 (ROIC)</label><span>{fmt(fin.get('roic'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>營業利潤率</label><span>{fmt(fin.get('operating_margin'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>純利率</label><span>{fmt(fin.get('profit_margin'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "eps")}</label><span>{fmt(fin.get('eps'), '$', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "roe")}</label><span>{fmt(fin.get('roe'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "roa")}</label><span>{fmt(fin.get('roa'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "roic")}</label><span>{fmt(fin.get('roic'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "operating_margin")}</label><span>{fmt(fin.get('operating_margin'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "profit_margin")}</label><span>{fmt(fin.get('profit_margin'), suffix='%', dec=2)}</span></div>
                 </div>
             </div>
 
             <div class="info-card">
-                <h4>殖利率與風險</h4>
+                <h4>{get_t(None, "cash_flow")} & {get_t(None, "risk")}</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>殖利率</label><span>{fmt(fin.get('div_yield'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>貝他值 (Beta)</label><span>{fmt(fin.get('beta'), dec=2)}</span></div>
-                    <div class="info-item"><label>賣空比例</label><span>{fmt(fin.get('short_ratio'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>速動比率</label><span>{fmt(fin.get('quick_ratio'), dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "dividend_yield")}</label><span>{fmt(fin.get('div_yield'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "beta")}</label><span>{fmt(fin.get('beta'), dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "short_ratio")}</label><span>{fmt(fin.get('short_ratio'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "quick_ratio")}</label><span>{fmt(fin.get('quick_ratio'), dec=2)}</span></div>
                 </div>
             </div>
 
             <div class="info-card">
-                <h4>52週區間</h4>
+                <h4>{get_t(None, "52w_range")}</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>52週高點</label><span>${fmt_num(fin.get('high_52'))}</span></div>
-                    <div class="info-item"><label>52週低點</label><span>${fmt_num(fin.get('low_52'))}</span></div>
-                    <div class="info-item"><label>目前位置</label><span>{fmt(fin.get('range_pos'), suffix='%', dec=1)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "high_52w")}</label><span>${fmt_num(fin.get('high_52'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "low_52w")}</label><span>${fmt_num(fin.get('low_52'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "range_position")}</label><span>{fmt(fin.get('range_pos'), suffix='%', dec=1)}</span></div>
                 </div>
             </div>
 
             <div class="info-card">
-                <h4>現金流</h4>
+                <h4>{get_t(None, "cash_flow")}</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>營運現金流</label><span>${fmt_num(fin.get('ocf'))}</span></div>
-                    <div class="info-item"><label>自由現金流</label><span>${fmt_num(fin.get('fcf'))}</span></div>
-                    <div class="info-item"><label>現金流殖利率</label><span>{fmt(fin.get('fcf_yield'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>現金流覆蓋率</label><span>{fmt(fin.get('fcf_coverage'), 'x ', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "operating_cash_flow_label")}</label><span>${fmt_num(fin.get('ocf'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "free_cash_flow_label")}</label><span>${fmt_num(fin.get('fcf'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "fcf_yield_label")}</label><span>{fmt(fin.get('fcf_yield'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "fcf_coverage_label")}</label><span>{fmt(fin.get('fcf_coverage'), 'x ', dec=2)}</span></div>
                 </div>
             </div>
 
             <div class="info-card">
-                <h4>營收與成長</h4>
+                <h4>{get_t(None, "revenue_growth")} & {get_t(None, "growth")}</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>季度營收</label><span>${fmt_num(fin.get('total_revenue'))}</span></div>
-                    <div class="info-item"><label>營收成長率</label><span>{fmt(fin.get('revenue_growth'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>盈餘成長率</label><span>{fmt(fin.get('earnings_growth'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>總現金</label><span>${fmt_num(fin.get('total_cash'))}</span></div>
-                    <div class="info-item"><label>總負債</label><span>${fmt_num(fin.get('total_liabilities'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "total_revenue")}</label><span>${fmt_num(fin.get('total_revenue'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "revenue_growth")}</label><span>{fmt(fin.get('revenue_growth'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "earnings_growth")}</label><span>{fmt(fin.get('earnings_growth'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "total_cash")}</label><span>${fmt_num(fin.get('total_cash'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "total_liabilities")}</label><span>${fmt_num(fin.get('total_liabilities'))}</span></div>
                 </div>
             </div>
 
             <div class="info-card">
-                <h4>分析師與持股</h4>
+                <h4>{get_t(None, "analysts")} & {get_t(None, "insider_holdings")}</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>目標均價</label><span>${fmt_num(fin.get('target_mean'))}</span></div>
-                    <div class="info-item"><label>目標中位數</label><span>${fmt_num(fin.get('target_median'))}</span></div>
-                    <div class="info-item"><label>分析師人數</label><span>{fmt(fin.get('num_analysts'), dec=0)}</span></div>
-                    <div class="info-item"><label>推薦等級</label><span>{fmt(fin.get('recommendation'), dec=2)}</span></div>
-                    <div class="info-item"><label>內部持股</label><span>{fmt(fin.get('held_insiders'), suffix='%', dec=2)}</span></div>
-                    <div class="info-item"><label>機構持股</label><span>{fmt(fin.get('held_institutions'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "target_mean")}</label><span>${fmt_num(fin.get('target_mean'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "target_median")}</label><span>${fmt_num(fin.get('target_median'))}</span></div>
+                    <div class="info-item"><label>{get_t(None, "num_analysts")}</label><span>{fmt(fin.get('num_analysts'), dec=0)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "recommendation")}</label><span>{fmt(fin.get('recommendation'), dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "insider_holdings")}</label><span>{fmt(fin.get('held_insiders'), suffix='%', dec=2)}</span></div>
+                    <div class="info-item"><label>{get_t(None, "institutional_holdings")}</label><span>{fmt(fin.get('held_institutions'), suffix='%', dec=2)}</span></div>
                 </div>
             </div>
         </div>"""
     elif tab == "chart":
         content_html = f"""
         <div class="detail-content">
-            <p>正在開啟K線圖...</p>
+            <p>{get_t(None, "loading")}</p>
         </div>"""
     elif tab == "news":
         news = StockData.get_news(ticker)
@@ -2534,7 +2831,7 @@ def get(ticker: str, tab: str = "basic"):
             </div>"""
         content_html = f"""
         <div class="detail-content">
-            {news_items_html if news_items_html else '<p>暫無相關新聞</p>'}
+            {news_items_html if news_items_html else '<p>' + get_t(None, "no_news") + '</p>'}
         </div>"""
     
     return NotStr(f"""
@@ -2612,6 +2909,11 @@ if __name__ == "__main__":
     if not DATA_FILE.exists():
         store.save()
     
+    # 語言可能已變更，刪除舊快取檔案讓按鈕文字重新生成
+    rows_cache.invalidate()
+    if CACHE_FILE.exists():
+        CACHE_FILE.unlink()
+    
     # 從 settings 讀取上次視窗大小
     saved = store.get_settings()
     win_w = saved.get("window_width", 1400)
@@ -2629,11 +2931,11 @@ if __name__ == "__main__":
     import time
     time.sleep(2)
     
-    print("桌面視窗啟動中...")
+    print(get_t(None, "window_starting"))
     
     # 建立桌面視窗
     window = webview.create_window(
-        title="yfWL 全球股市看盤",
+        title=get_t(None, "app_title"),
         url="http://localhost:5001",
         width=win_w,
         height=win_h,
