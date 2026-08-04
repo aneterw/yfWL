@@ -3,7 +3,7 @@ from datetime import datetime
 
 def get_stock_news(ticker_symbol: str, limit: int = 10):
     """
-    抓取個股Yahoo財經新聞（適配新版yfinance嵌套結構，不會出現None）
+    抓取個股Yahoo財經新聞（適配新版yfinance嵌套結構，防空值報錯）
     :param ticker_symbol: 股票代碼 AAPL/NVDA/2330.TW/0700.HK
     :param limit: 最多抓取幾則新聞
     :return: 新聞清單 list[dict]
@@ -11,7 +11,6 @@ def get_stock_news(ticker_symbol: str, limit: int = 10):
     ticker = yfinance.Ticker(ticker_symbol)
     raw_news = ticker.news or []
     news_result = []
-
     for item in raw_news[:limit]:
         # 新版yfinance所有資訊都包在 content 子字典
         content = item.get("content", {})
@@ -19,14 +18,14 @@ def get_stock_news(ticker_symbol: str, limit: int = 10):
         # 標題
         title = content.get("title", "無標題")
         # 新聞來源
-        provider_info = content.get("provider", {})
+        provider_info = content.get("provider", {}) or {}
         publisher = provider_info.get("displayName", "未知媒體")
         # 發布時間
         pub_date = content.get("pubDate", "")
         if "T" in pub_date:
             pub_date = pub_date.replace("T", " ").replace("Z", " UTC")
-        # 新聞連結
-        link_info = content.get("clickThroughUrl", {})
+        # 新聞連結：修復 clickThroughUrl 為 None 的問題
+        link_info = content.get("clickThroughUrl") or {}
         news_url = link_info.get("url", "無連結")
         # 摘要
         summary = content.get("summary", "無摘要")
@@ -45,7 +44,6 @@ if __name__ == "__main__":
     # 可替換任意標的：AAPL, NVDA, 2330.TW, 0700.HK
     target_ticker = "NVDA"
     news_list = get_stock_news(target_ticker, limit=10)
-
     if not news_list:
         print(f"【{target_ticker}】無相關新聞")
     else:

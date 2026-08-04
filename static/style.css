@@ -38,13 +38,46 @@ body {
 
 /* ==================== 主題 ==================== */
 .theme-light {
-    --bg-primary: #f0f2f5;
-    --bg-secondary: #ffffff;
-    --bg-card: #ffffff;
+    --bg-primary: #808080;
+    --bg-secondary: #e0e0e0;
+    --bg-card: #f5f5f5;
     --text-primary: #1a1a1a;
-    --text-secondary: #666666;
-    --border-color: #d0d0d0;
-    --hover-bg: #e8e8e8;
+    --text-secondary: #333333;
+    --border-color: #999999;
+    --hover-bg: #d0d0d0;
+}
+
+.theme-light .ticker-name,
+.theme-light .price {
+    color: #1a1a1a;
+}
+
+.theme-light .info-item span {
+    color: #006400;
+}
+
+.theme-light .info-card h4 {
+    color: #1a1a1a;
+}
+
+.theme-light .current-price {
+    color: #1a1a1a;
+}
+
+.theme-light .news-title {
+    color: #2c3e50;
+}
+
+.theme-light .news-publisher {
+    color: #2980b9;
+}
+
+.theme-light .news-time {
+    color: #555555;
+}
+
+.theme-light .news-summary {
+    color: #4a5568;
 }
 
 .theme-dark {
@@ -55,6 +88,320 @@ body {
     --text-secondary: #888888;
     --border-color: #2a2a3a;
     --hover-bg: #1e1e30;
+}
+
+/* ==================== 冰藍透玻璃 ==================== */
+.theme-ice-blue {
+    --bg-primary: #0E1629;
+    --bg-secondary: rgba(110, 190, 255, 0.10);
+    --bg-card: rgba(110, 190, 255, 0.10);
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.75);
+    --border-color: rgba(160, 220, 255, 0.22);
+    --accent-blue: #6ebeff;
+    --accent-green: #26a69a;
+    --accent-red: #ef5350;
+    --accent-yellow: #f5a623;
+    --hover-bg: rgba(110, 190, 255, 0.18);
+    --shadow: 0 4px 20px rgba(60, 140, 220, 0.12);
+    background: linear-gradient(150deg, #0E1629 0%, #15223F 50%, #0F1930 100%);
+}
+
+.theme-ice-blue .navbar,
+.theme-ice-blue .watchlist-section {
+    background: rgba(110, 190, 255, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-color: rgba(160, 220, 255, 0.22);
+}
+
+.theme-ice-blue .watchlist-section {
+    position: relative;
+    z-index: 1000;
+}
+
+.theme-ice-blue .quote-table {
+    background: rgba(110, 190, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 1;
+}
+
+.theme-ice-blue .quote-table thead {
+    background: rgba(110, 190, 255, 0.12);
+}
+
+.theme-ice-blue .info-card {
+    background: rgba(110, 190, 255, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(160, 220, 255, 0.22);
+    box-shadow: 0 4px 20px rgba(60, 140, 220, 0.12);
+}
+
+.theme-ice-blue .modal-content {
+    background: rgba(110, 190, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(160, 220, 255, 0.22);
+}
+
+.theme-ice-blue .modal-header,
+.theme-ice-blue .modal-footer {
+    background: rgba(110, 190, 255, 0.15);
+}
+
+.theme-ice-blue .search-container {
+    background: #1a2a4a;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    border: 1px solid rgba(160, 220, 255, 0.22);
+}
+
+.theme-ice-blue .btn-settings,
+.theme-ice-blue .btn-refresh {
+    background: rgba(110, 190, 255, 0.12);
+    border-color: rgba(160, 220, 255, 0.22);
+}
+
+.theme-ice-blue .form-control {
+    background: rgba(110, 190, 255, 0.08);
+    border-color: rgba(160, 220, 255, 0.22);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.theme-ice-blue select.form-control option {
+    background: #1a2a4a;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.theme-ice-blue .news-item {
+    background: rgba(110, 190, 255, 0.08);
+    border-color: rgba(160, 220, 255, 0.22);
+}
+
+.theme-ice-blue .info-item span {
+    color: rgba(110, 190, 255, 0.95);
+}
+
+.theme-ice-blue .ticker-code {
+    color: rgba(110, 190, 255, 0.9);
+}
+
+.theme-ice-blue .app-title {
+    color: rgba(160, 220, 255, 0.95);
+}
+
+/* ==================== 霧紫透玻璃 ==================== */
+.theme-mist-purple {
+    --bg-primary: #0E1629;
+    --bg-secondary: rgba(160, 130, 240, 0.09);
+    --bg-card: rgba(160, 130, 240, 0.09);
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.75);
+    --border-color: rgba(200, 175, 255, 0.20);
+    --accent-blue: #a082f0;
+    --accent-green: #26a69a;
+    --accent-red: #ef5350;
+    --accent-yellow: #f5a623;
+    --hover-bg: rgba(160, 130, 240, 0.16);
+    --shadow: 0 4px 20px rgba(120, 80, 200, 0.10);
+    background: linear-gradient(150deg, #0E1629 0%, #1A1535 50%, #12102A 100%);
+}
+
+.theme-mist-purple .navbar,
+.theme-mist-purple .watchlist-section {
+    background: rgba(160, 130, 240, 0.09);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-color: rgba(200, 175, 255, 0.20);
+}
+
+.theme-mist-purple .watchlist-section {
+    position: relative;
+    z-index: 1000;
+}
+
+.theme-mist-purple .quote-table {
+    background: rgba(160, 130, 240, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 1;
+}
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.theme-mist-purple .quote-table thead {
+    background: rgba(160, 130, 240, 0.12);
+}
+
+.theme-mist-purple .info-card {
+    background: rgba(160, 130, 240, 0.09);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(200, 175, 255, 0.20);
+    box-shadow: 0 4px 20px rgba(120, 80, 200, 0.10);
+}
+
+.theme-mist-purple .modal-content {
+    background: rgba(160, 130, 240, 0.11);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(200, 175, 255, 0.20);
+}
+
+.theme-mist-purple .modal-header,
+.theme-mist-purple .modal-footer {
+    background: rgba(160, 130, 240, 0.14);
+}
+
+.theme-mist-purple .search-container {
+    background: #2a1a4a;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    border: 1px solid rgba(200, 175, 255, 0.20);
+}
+
+.theme-mist-purple .btn-settings,
+.theme-mist-purple .btn-refresh {
+    background: rgba(160, 130, 240, 0.11);
+    border-color: rgba(200, 175, 255, 0.20);
+}
+
+.theme-mist-purple .form-control {
+    background: rgba(160, 130, 240, 0.07);
+    border-color: rgba(200, 175, 255, 0.20);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.theme-mist-purple select.form-control option {
+    background: #2a1a4a;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.theme-mist-purple .news-item {
+    background: rgba(160, 130, 240, 0.07);
+    border-color: rgba(200, 175, 255, 0.20);
+}
+
+.theme-mist-purple .info-item span {
+    color: rgba(160, 130, 240, 0.95);
+}
+
+.theme-mist-purple .ticker-code {
+    color: rgba(160, 130, 240, 0.9);
+}
+
+.theme-mist-purple .app-title {
+    color: rgba(200, 175, 255, 0.95);
+}
+
+/* ==================== 青綠透玻璃 ==================== */
+.theme-jade-green {
+    --bg-primary: #0E1629;
+    --bg-secondary: rgba(80, 210, 190, 0.08);
+    --bg-card: rgba(80, 210, 190, 0.08);
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.75);
+    --border-color: rgba(130, 240, 220, 0.18);
+    --accent-blue: #50d2be;
+    --accent-green: #26a69a;
+    --accent-red: #ef5350;
+    --accent-yellow: #f5a623;
+    --hover-bg: rgba(80, 210, 190, 0.15);
+    --shadow: 0 4px 20px rgba(30, 180, 160, 0.09);
+    background: linear-gradient(150deg, #0E1629 0%, #0F2A28 50%, #0D1E20 100%);
+}
+
+.theme-jade-green .navbar,
+.theme-jade-green .watchlist-section {
+    background: rgba(80, 210, 190, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-color: rgba(130, 240, 220, 0.18);
+}
+
+.theme-jade-green .watchlist-section {
+    position: relative;
+    z-index: 1000;
+}
+
+.theme-jade-green .quote-table {
+    background: rgba(80, 210, 190, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 1;
+}
+
+.theme-jade-green .quote-table thead {
+    background: rgba(80, 210, 190, 0.10);
+}
+
+.theme-jade-green .info-card {
+    background: rgba(80, 210, 190, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(130, 240, 220, 0.18);
+    box-shadow: 0 4px 20px rgba(30, 180, 160, 0.09);
+}
+
+.theme-jade-green .modal-content {
+    background: rgba(80, 210, 190, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(130, 240, 220, 0.18);
+}
+
+.theme-jade-green .modal-header,
+.theme-jade-green .modal-footer {
+    background: rgba(80, 210, 190, 0.12);
+}
+
+.theme-jade-green .search-container {
+    background: #1a2a2a;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    border: 1px solid rgba(130, 240, 220, 0.18);
+}
+
+.theme-jade-green .btn-settings,
+.theme-jade-green .btn-refresh {
+    background: rgba(80, 210, 190, 0.09);
+    border-color: rgba(130, 240, 220, 0.18);
+}
+
+.theme-jade-green .form-control {
+    background: rgba(80, 210, 190, 0.06);
+    border-color: rgba(130, 240, 220, 0.18);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.theme-jade-green select.form-control option {
+    background: #1a2a2a;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.theme-jade-green .news-item {
+    background: rgba(80, 210, 190, 0.06);
+    border-color: rgba(130, 240, 220, 0.18);
+}
+
+.theme-jade-green .info-item span {
+    color: rgba(80, 210, 190, 0.95);
+}
+
+.theme-jade-green .ticker-code {
+    color: rgba(80, 210, 190, 0.9);
+}
+
+.theme-jade-green .app-title {
+    color: rgba(130, 240, 220, 0.95);
 }
 
 /* ==================== 基礎樣式 ==================== */

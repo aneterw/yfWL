@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 import yfinance as yf
 from fasthtml.common import *
+from news import get_stock_news
 
 # ==================== 全域配置 ====================
 DATA_FILE = Path(__file__).parent / "watchlist_data.json"
@@ -50,6 +51,9 @@ TRANSLATIONS = {
         "theme_system": "跟隨系統",
         "theme_light": "淺色模式",
         "theme_dark": "深色模式",
+        "theme_ice_blue": "冰藍透玻璃",
+        "theme_mist_purple": "霧紫透玻璃",
+        "theme_jade_green": "青綠透玻璃",
         "auto_update": "自動更新",
         "manual_update_current": "更新當前頁面",
         "manual_update_all": "更新全部報價",
@@ -110,6 +114,9 @@ TRANSLATIONS = {
         "theme_system": "跟随系统",
         "theme_light": "浅色模式",
         "theme_dark": "深色模式",
+        "theme_ice_blue": "冰蓝透玻璃",
+        "theme_mist_purple": "雾紫透玻璃",
+        "theme_jade_green": "青绿透玻璃",
         "auto_update": "自动更新",
         "manual_update_current": "更新当前页面",
         "manual_update_all": "更新全部报价",
@@ -163,6 +170,9 @@ TRANSLATIONS = {
         "theme_system": "System",
         "theme_light": "Light",
         "theme_dark": "Dark",
+        "theme_ice_blue": "Ice Blue Glass",
+        "theme_mist_purple": "Mist Purple Glass",
+        "theme_jade_green": "Jade Green Glass",
         "auto_update": "Auto Update",
         "manual_update_current": "Update Current",
         "manual_update_all": "Update All",
@@ -239,7 +249,7 @@ class DataStore:
             "last_updated": datetime.now().isoformat(),
             "settings": {
                 "language": "zh-TW",
-                "theme": "system",
+                "theme": "mist-purple",
                 "font_family": "Microsoft YaHei",
                 "font_size": 14,
                 "auto_update_interval": 300,
@@ -533,10 +543,43 @@ class StockData:
                     "time": now,
                 }
             else:
-                current = hist['Close'].iloc[-1]
-                prev = hist['Close'].iloc[-2] if len(hist) > 1 else current
-                change = current - prev
+                # 取得收盤價，處理 nan 情況
+                close_val = hist['Close'].iloc[-1]
+                if pd.isna(close_val):
+                    current = info.get("regularMarketPrice") or info.get("currentPrice") or 0
+                    prev = info.get("regularMarketPreviousClose") or info.get("previousClose") or 0
+                else:
+                    current = float(close_val)
+                    prev_close_val = hist['Close'].iloc[-2] if len(hist) > 1 else current
+                    prev = float(prev_close_val) if not pd.isna(prev_close_val) else (info.get("regularMarketPreviousClose") or info.get("previousClose") or current)
+                
+                if current == 0:
+                    return None
+                
+                change = current - prev if prev else 0
                 change_pct = (change / prev * 100) if prev else 0
+                
+                # 從 hist 取值，若為 nan 則從 info 取
+                def safe_hist_val(col):
+                    val = hist[col].iloc[-1] if col in hist else 0
+                    if pd.isna(val):
+                        return 0
+                    return float(val)
+                
+                open_val = safe_hist_val('Open')
+                high_val = safe_hist_val('High')
+                low_val = safe_hist_val('Low')
+                
+                # 若 hist 取到 0，嘗試從 info 取
+                if open_val == 0:
+                    open_val = info.get("regularMarketOpen", 0) or prev
+                if high_val == 0:
+                    high_val = info.get("regularMarketDayHigh", 0) or current
+                if low_val == 0:
+                    low_val = info.get("regularMarketDayLow", 0) or current
+                
+                vol_val = hist['Volume'].iloc[-1] if 'Volume' in hist else 0
+                volume = int(vol_val) if pd.notna(vol_val) else 0
                 
                 data = {
                     "ticker": ticker,
@@ -544,7 +587,7 @@ class StockData:
                     "price": round(current, 2),
                     "change": round(change, 2),
                     "change_pct": round(change_pct, 2),
-                    "volume": int(hist['Volume'].iloc[-1]) if 'Volume' in hist else 0,
+                    "volume": volume,
                     "market_cap": info.get("marketCap", 0),
                     "pe_ratio": info.get("trailingPE"),
                     "eps": info.get("trailingEps"),
@@ -552,9 +595,9 @@ class StockData:
                     "fifty_two_week_high": info.get("fiftyTwoWeekHigh"),
                     "fifty_two_week_low": info.get("fiftyTwoWeekLow"),
                     "previous_close": info.get("previousClose"),
-                    "open": float(hist['Open'].iloc[-1]),
-                    "high": float(hist['High'].iloc[-1]),
-                    "low": float(hist['Low'].iloc[-1]),
+                    "open": open_val,
+                    "high": high_val,
+                    "low": low_val,
                     "info": info,
                     "time": now,
                 }
@@ -661,29 +704,7 @@ class StockData:
     @classmethod
     def get_news(cls, ticker, limit=10):
         try:
-            stock = yf.Ticker(ticker)
-            raw_news = stock.news or []
-            news_result = []
-            for item in raw_news[:limit]:
-                content = item.get("content", {})
-                title = content.get("title", "無標題")
-                provider_info = content.get("provider", {})
-                publisher = provider_info.get("displayName", "未知媒體")
-                pub_date = content.get("pubDate", "")
-                if "T" in pub_date:
-                    pub_date = pub_date.replace("T", " ").replace("Z", " UTC")
-                link_info = content.get("clickThroughUrl", {})
-                news_url = link_info.get("url", "#")
-                summary = content.get("summary", "")
-                news_result.append({
-                    "ticker": ticker,
-                    "publish_time": pub_date,
-                    "publisher": publisher,
-                    "title": title,
-                    "summary": summary,
-                    "url": news_url
-                })
-            return news_result
+            return get_stock_news(ticker, limit)
         except Exception:
             return []
     
@@ -737,7 +758,7 @@ class StockData:
                 div_paid = abs(float(cash_flow.loc['Common Stock Dividend Paid'].iloc[0]))
             
             # 風險指標
-            div_yield = (info.get('dividendYield') or 0.0) * 100
+            div_yield = info.get('dividendYield') or 0.0  # 已是百分比形式
             beta = info.get('beta', 0.0) or 0.0
             short_ratio = (info.get('shortPercentOfFloat') or 0.0) * 100
             quick_ratio = info.get('quickRatio', 0.0) or 0.0
@@ -837,7 +858,7 @@ def get_t(t, key):
     return TRANSLATIONS.get(lang, TRANSLATIONS["zh-TW"]).get(key, key)
 
 def get_theme_class():
-    theme = store.get_settings().get("theme", "system")
+    theme = store.get_settings().get("theme", "mist-purple")
     return f"theme-{theme}"
 
 def get_font_style():
@@ -861,6 +882,13 @@ def fmt_num(val, dec=2):
     if abs_val >= 1e4:
         return f"{sign}{abs_val/1e3:,.{dec}f}K"
     return f"{sign}{abs_val:,.{dec}f}"
+
+def fmt_price(val, dec=2):
+    """Format price: always show actual number with decimals, no K/M/B/T"""
+    if val is None or val == 0:
+        return "0.00"
+    sign = "-" if val < 0 else ""
+    return f"{sign}{abs(val):,.{dec}f}"
 
 def render_quote_row(item, index):
     data = StockData.get_quote(item["ticker"])
@@ -1017,6 +1045,9 @@ def render_settings_modal_raw():
                     <option value="system" {"selected" if settings.get('theme') == 'system' else ""}>{get_t(None, "theme_system")}</option>
                     <option value="light" {"selected" if settings.get('theme') == 'light' else ""}>{get_t(None, "theme_light")}</option>
                     <option value="dark" {"selected" if settings.get('theme') == 'dark' else ""}>{get_t(None, "theme_dark")}</option>
+                    <option value="ice-blue" {"selected" if settings.get('theme') == 'ice-blue' else ""}>{get_t(None, "theme_ice_blue")}</option>
+                    <option value="mist-purple" {"selected" if settings.get('theme') == 'mist-purple' else ""}>{get_t(None, "theme_mist_purple")}</option>
+                    <option value="jade-green" {"selected" if settings.get('theme') == 'jade-green' else ""}>{get_t(None, "theme_jade_green")}</option>
                 </select>
             </div>
             <div class="setting-group">
@@ -1231,7 +1262,7 @@ function applySettings() {
     document.body.style.fontSize = (currentSettings.font_size || 14) + 'px';
     document.querySelector('.app').style.fontSize = (currentSettings.font_size || 14) + 'px';
     
-    const theme = currentSettings.theme || 'system';
+    const theme = currentSettings.theme || 'mist-purple';
     document.querySelector('.app').className = `app theme-${theme}`;
     
     startAutoUpdate();
@@ -1866,7 +1897,29 @@ function refreshAllWatchlists() {
 let progressTimer = null;
 
 function refreshAll() {
-    refreshQuotes();
+    // 靜默更新所有觀測清單（自動更新時使用）
+    fetch('/api/refresh/all', { method: 'POST' });
+    
+    // 輪詢進度，完成後重新載入當前頁面
+    if (progressTimer) clearInterval(progressTimer);
+    progressTimer = setInterval(() => {
+        fetch('/api/progress').then(r => r.json()).then(p => {
+            if (!p.running) {
+                clearInterval(progressTimer);
+                // 重新載入當前頁面的表格
+                fetch('/api/watchlist/rows?refresh=true').then(r => r.json()).then(data => {
+                    var tbody = document.getElementById('quote-table-body');
+                    if (tbody) {
+                        tbody.innerHTML = data.html;
+                    }
+                    updateLastTime(data.updated);
+                    // 更新後隱藏快取提示
+                    var cn = document.getElementById('cache-notice');
+                    if (cn) cn.style.display = 'none';
+                });
+            }
+        });
+    }, 500);
 }
 
 function updateLastTime(ts) {
@@ -2186,15 +2239,45 @@ def post():
         all_names = store.get_all_watchlists()
         total_stocks = 0
         all_tickers = []
+        watchlists_data = {}
         for name in all_names:
-            store.set_current_watchlist(name)
-            watchlist = store.get_watchlist()
-            total_stocks += len(watchlist)
-            all_tickers.extend([item["ticker"] for item in watchlist])
-        progress.start(1, "更新全部")
+            watchlists_data[name] = store.data["watchlists"]["items"].get(name, [])
+            total_stocks += len(watchlists_data[name])
+            all_tickers.extend([item["ticker"] for item in watchlists_data[name]])
+        progress.start(total_stocks + 1, "更新全部")
         # 去重後批量更新
         unique_tickers = list(set(all_tickers))
         StockData.get_quotes_batch(unique_tickers, force=True)
+        progress.tick()
+        # 為每個清單生成 HTML 快取
+        for name in all_names:
+            watchlist = watchlists_data[name]
+            html = ""
+            for item in watchlist:
+                data = StockData.get_quote(item["ticker"])
+                if not data:
+                    html += f'<tr data-ticker="{item["ticker"]}"><td>{item["name"]}</td><td>{item["ticker"]}</td><td>--</td><td>--</td><td>--</td><td>--</td><td><button class="btn btn-sm btn-primary" onclick="openDetail(\'{item["ticker"]}\')">瀏覽</button></td></tr>'
+                    continue
+                change_class = "price-up" if data["change"] >= 0 else "price-down"
+                change_sign = "+" if data["change"] >= 0 else ""
+                html += f'''<tr data-ticker="{item["ticker"]}">
+                    <td class="ticker-name">{item["name"]}</td>
+                    <td class="ticker-code">{item["ticker"]}</td>
+                    <td class="price">{fmt_num(data['price'])}</td>
+                    <td class="change {change_class}">{change_sign}{fmt_num(data['change'])}</td>
+                    <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
+                    <td class="volume">{fmt_num(data['volume'])}</td>
+                    <td class="actions">
+                        <button class="btn btn-sm btn-primary" onclick="openDetail('{item["ticker"]}')">瀏覽</button>
+                        <button class="btn btn-sm" onclick="openChartPanel('{item["ticker"]}')">📊</button>
+                        <button class="btn btn-sm" onclick="openAlertModal('{item["ticker"]}')">🔔</button>
+                        <button class="btn btn-sm" onclick="moveItem('{item["ticker"]}', -1)">↑</button>
+                        <button class="btn btn-sm" onclick="moveItem('{item["ticker"]}', 1)">↓</button>
+                        <button class="btn btn-sm btn-danger" onclick="removeItem('{item["ticker"]}')">刪除</button>
+                    </td>
+                </tr>'''
+            rows_cache.set(name, html)
+            progress.tick()
         store.set_current_watchlist(original_current)
         progress.done()
     threading.Thread(target=do_refresh_all, daemon=True).start()
@@ -2339,18 +2422,18 @@ def get(ticker: str, tab: str = "basic"):
             <div class="info-card">
                 <h4>{data['name']} ({data['ticker']})</h4>
                 <div class="price-display">
-                    <span class="current-price">{fmt_num(data['price'])}</span>
-                    <span class="price-change {change_class}">{change_sign}{fmt_num(data['change'])} ({change_sign}{data['change_pct']:.2f}%) <span class="change-arrow {change_class}">{change_arrow}</span></span>
+                    <span class="current-price">{fmt_price(data['price'])}</span>
+                    <span class="price-change {change_class}">{change_sign}{fmt_price(data['change'])} ({change_sign}{data['change_pct']:.2f}%) <span class="change-arrow {change_class}">{change_arrow}</span></span>
                 </div>
             </div>
 
             <div class="info-card">
                 <h4>市場數據</h4>
                 <div class="info-grid">
-                    <div class="info-item"><label>開盤</label><span>{fmt_num(data.get('open', 0))}</span></div>
-                    <div class="info-item"><label>最高</label><span>{fmt_num(data.get('high', 0))}</span></div>
-                    <div class="info-item"><label>最低</label><span>{fmt_num(data.get('low', 0))}</span></div>
-                    <div class="info-item"><label>昨收</label><span>{fmt_num(data.get('previous_close', 0))}</span></div>
+                    <div class="info-item"><label>開盤</label><span>{fmt_price(data.get('open', 0))}</span></div>
+                    <div class="info-item"><label>最高</label><span>{fmt_price(data.get('high', 0))}</span></div>
+                    <div class="info-item"><label>最低</label><span>{fmt_price(data.get('low', 0))}</span></div>
+                    <div class="info-item"><label>昨收</label><span>{fmt_price(data.get('previous_close', 0))}</span></div>
                     <div class="info-item"><label>成交量</label><span>{fmt_num(data.get('volume', 0))}</span></div>
                     <div class="info-item"><label>市值</label><span>${fmt_num(fin.get('market_cap', 0))}</span></div>
                 </div>
