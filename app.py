@@ -1175,7 +1175,7 @@ def render_quote_row(item, index):
     return Tr(
         Td(item["name"], cls="ticker-name"),
         Td(data["ticker"], cls="ticker-code"),
-        Td(fmt_num(data['price']), cls="price"),
+        Td(fmt_price(data['price']), cls="price"),
         Td(f"{change_sign}{fmt_num(data['change'])}", cls=f"change {change_class}"),
         Td(f"{change_sign}{data['change_pct']:.2f}%", cls=f"change {change_class}"),
         Td(fmt_num(data['volume']), cls="volume"),
@@ -2345,7 +2345,7 @@ def post(item: dict):
             html += f'''<tr data-ticker="{w["ticker"]}">
                 <td class="ticker-name">{w["name"]}</td>
                 <td class="ticker-code">{w["ticker"]}</td>
-                <td class="price">{fmt_num(data['price'])}</td>
+                <td class="price">{fmt_price(data['price'])}</td>
                 <td class="change {change_class}">{change_sign}{fmt_num(data['change'])}</td>
                 <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
                 <td class="volume">{fmt_num(data['volume'])}</td>
@@ -2380,7 +2380,7 @@ def delete(ticker: str):
         html += f'''<tr data-ticker="{w["ticker"]}">
             <td class="ticker-name">{w["name"]}</td>
             <td class="ticker-code">{w["ticker"]}</td>
-            <td class="price">{fmt_num(data['price'])}</td>
+            <td class="price">{fmt_price(data['price'])}</td>
             <td class="change {change_class}">{change_sign}{fmt_num(data['change'])}</td>
             <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
             <td class="volume">{fmt_num(data['volume'])}</td>
@@ -2415,7 +2415,7 @@ def post(data: dict):
         html += f'''<tr data-ticker="{w["ticker"]}">
             <td class="ticker-name">{w["name"]}</td>
             <td class="ticker-code">{w["ticker"]}</td>
-            <td class="price">{fmt_num(d['price'])}</td>
+            <td class="price">{fmt_price(d['price'])}</td>
             <td class="change {change_class}">{change_sign}{fmt_num(d['change'])}</td>
             <td class="change {change_class}">{change_sign}{d['change_pct']:.2f}%</td>
             <td class="volume">{fmt_num(d['volume'])}</td>
@@ -2473,7 +2473,7 @@ def get(refresh: bool = False):
         html += f'''<tr data-ticker="{item["ticker"]}">
             <td class="ticker-name">{item["name"]}</td>
             <td class="ticker-code">{item["ticker"]}</td>
-            <td class="price">{fmt_num(data['price'])}</td>
+            <td class="price">{fmt_price(data['price'])}</td>
             <td class="change {change_class}">{change_sign}{fmt_num(data['change'])}</td>
             <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
             <td class="volume">{fmt_num(data['volume'])}</td>
@@ -2560,7 +2560,7 @@ def post():
                 html += f'''<tr data-ticker="{item["ticker"]}">
                     <td class="ticker-name">{item["name"]}</td>
                     <td class="ticker-code">{item["ticker"]}</td>
-                    <td class="price">{fmt_num(data['price'])}</td>
+                    <td class="price">{fmt_price(data['price'])}</td>
                     <td class="change {change_class}">{change_sign}{fmt_num(data['change'])}</td>
                     <td class="change {change_class}">{change_sign}{data['change_pct']:.2f}%</td>
                     <td class="volume">{fmt_num(data['volume'])}</td>

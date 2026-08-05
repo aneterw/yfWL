@@ -1,19 +1,219 @@
 {
   "version": "1.0",
   "created_at": "2026-07-31T14:53:14.400438",
-  "last_updated": "2026-07-31T22:58:48.866636",
+  "last_updated": "2026-08-05T11:08:54.251173",
   "settings": {
     "language": "zh-TW",
-    "theme": "system",
+    "theme": "mist-purple",
     "font_family": "LXGW ZhenKai GB",
     "font_size": 19,
-    "auto_update_interval": 300,
+    "auto_update_interval": 900,
     "price_alerts": {},
     "window_width": 1400,
-    "window_height": 1020
+    "window_height": 1004
   },
   "watchlists": {
     "items": {
+      "US": [
+        {
+          "ticker": "^GSPC",
+          "name": "S&P 500"
+        },
+        {
+          "ticker": "^IXIC",
+          "name": "NASDAQ Composite"
+        },
+        {
+          "ticker": "^SOX",
+          "name": "PHLX Semiconductor"
+        },
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA Corporation"
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "Alphabet Inc."
+        },
+        {
+          "ticker": "AAPL",
+          "name": "Apple Inc."
+        },
+        {
+          "ticker": "MSFT",
+          "name": "Microsoft Corporation"
+        },
+        {
+          "ticker": "TSM",
+          "name": "Taiwan Semiconductor Manufactur"
+        },
+        {
+          "ticker": "AMZN",
+          "name": "Amazon.com, Inc."
+        },
+        {
+          "ticker": "AVGO",
+          "name": "Broadcom Inc."
+        },
+        {
+          "ticker": "META",
+          "name": "Meta Platforms, Inc."
+        },
+        {
+          "ticker": "TSLA",
+          "name": "Tesla, Inc."
+        },
+        {
+          "ticker": "SPCX",
+          "name": "Space Exploration Technologies "
+        },
+        {
+          "ticker": "BRK-B",
+          "name": "Berkshire Hathaway Inc. New"
+        },
+        {
+          "ticker": "LLY",
+          "name": "Eli Lilly and Company"
+        },
+        {
+          "ticker": "JPM",
+          "name": "JP Morgan Chase & Co."
+        },
+        {
+          "ticker": "WMT",
+          "name": "Walmart Inc."
+        },
+        {
+          "ticker": "HD",
+          "name": "Home Depot, Inc. (The)"
+        },
+        {
+          "ticker": "UNH",
+          "name": "UnitedHealth Group Incorporated"
+        },
+        {
+          "ticker": "MA",
+          "name": "Mastercard Incorporated"
+        },
+        {
+          "ticker": "V",
+          "name": "Visa Inc."
+        },
+        {
+          "ticker": "ABBV",
+          "name": "AbbVie Inc."
+        },
+        {
+          "ticker": "XOM",
+          "name": "ExxonMobil Holdings Corporation"
+        },
+        {
+          "ticker": "COST",
+          "name": "Costco Wholesale Corporation"
+        },
+        {
+          "ticker": "MU",
+          "name": "Micron Technology, Inc."
+        },
+        {
+          "ticker": "INTC",
+          "name": "Intel Corporation"
+        }
+      ],
+      "Taiwan": [
+        {
+          "ticker": "^TWII",
+          "name": "TSEC CAPITALIZATION WEIGHTED ST"
+        },
+        {
+          "ticker": "2330.TW",
+          "name": "台積電"
+        },
+        {
+          "ticker": "2454.TW",
+          "name": "聯發科"
+        },
+        {
+          "ticker": "2308.TW",
+          "name": "台達電"
+        },
+        {
+          "ticker": "2317.TW",
+          "name": "鴻海"
+        },
+        {
+          "ticker": "3711.TW",
+          "name": "日月光投控"
+        },
+        {
+          "ticker": "0050.TW",
+          "name": "YUANTA SECURITIES INV TRUST CO "
+        },
+        {
+          "ticker": "2303.TW",
+          "name": "聯電"
+        },
+        {
+          "ticker": "2327.TW",
+          "name": "國巨*"
+        },
+        {
+          "ticker": "2383.TW",
+          "name": "台光電"
+        },
+        {
+          "ticker": "2881.TW",
+          "name": "富邦金"
+        },
+        {
+          "ticker": "2882.TW",
+          "name": "國泰金"
+        },
+        {
+          "ticker": "2884.TW",
+          "name": "玉山金"
+        },
+        {
+          "ticker": "3037.TW",
+          "name": "欣興"
+        },
+        {
+          "ticker": "2382.TW",
+          "name": "廣達"
+        },
+        {
+          "ticker": "2891.TW",
+          "name": "中信金"
+        },
+        {
+          "ticker": "2408.TW",
+          "name": "南亞科"
+        },
+        {
+          "ticker": "2345.TW",
+          "name": "智邦"
+        },
+        {
+          "ticker": "7769.TW",
+          "name": "鴻勁"
+        },
+        {
+          "ticker": "1303.TW",
+          "name": "南亞"
+        },
+        {
+          "ticker": "2412.TW",
+          "name": "中華電"
+        },
+        {
+          "ticker": "2360.TW",
+          "name": "致茂"
+        },
+        {
+          "ticker": "2357.TW",
+          "name": "華碩"
+        }
+      ],
       "default": [
         {
           "name": "道瓊工業平均指數",
@@ -85,124 +285,8 @@
           "ticker": "^FTSE",
           "type": "index"
         }
-      ],
-      "US": [
-        {
-          "ticker": "NVDA",
-          "name": "NVIDIA Corporation"
-        },
-        {
-          "ticker": "GOOGL",
-          "name": "Alphabet Inc."
-        },
-        {
-          "ticker": "AAPL",
-          "name": "Apple Inc."
-        },
-        {
-          "ticker": "MSFT",
-          "name": "Microsoft Corporation"
-        },
-        {
-          "ticker": "TSM",
-          "name": "Taiwan Semiconductor Manufactur"
-        },
-        {
-          "ticker": "AMZN",
-          "name": "Amazon.com, Inc."
-        },
-        {
-          "ticker": "META",
-          "name": "Meta Platforms, Inc."
-        },
-        {
-          "ticker": "AVGO",
-          "name": "Broadcom Inc."
-        },
-        {
-          "ticker": "TSLA",
-          "name": "Tesla, Inc."
-        },
-        {
-          "ticker": "SPCX",
-          "name": "Space Exploration Technologies "
-        },
-        {
-          "ticker": "BRK-B",
-          "name": "Berkshire Hathaway Inc. New"
-        },
-        {
-          "ticker": "LLY",
-          "name": "Eli Lilly and Company"
-        },
-        {
-          "ticker": "JPM",
-          "name": "JP Morgan Chase & Co."
-        },
-        {
-          "ticker": "WMT",
-          "name": "Walmart Inc."
-        },
-        {
-          "ticker": "HD",
-          "name": "Home Depot, Inc. (The)"
-        },
-        {
-          "ticker": "UNH",
-          "name": "UnitedHealth Group Incorporated"
-        },
-        {
-          "ticker": "MA",
-          "name": "Mastercard Incorporated"
-        },
-        {
-          "ticker": "V",
-          "name": "Visa Inc."
-        },
-        {
-          "ticker": "ABBV",
-          "name": "AbbVie Inc."
-        },
-        {
-          "ticker": "XOM",
-          "name": "ExxonMobil Holdings Corporation"
-        },
-        {
-          "ticker": "COST",
-          "name": "Costco Wholesale Corporation"
-        }
-      ],
-      "Taiwan": [
-        {
-          "ticker": "2330.TW",
-          "name": "台積電"
-        },
-        {
-          "ticker": "2454.TW",
-          "name": "聯發科"
-        },
-        {
-          "ticker": "2308.TW",
-          "name": "台達電"
-        },
-        {
-          "ticker": "2317.TW",
-          "name": "鴻海"
-        },
-        {
-          "ticker": "3711.TW",
-          "name": "日月光投控"
-        },
-        {
-          "ticker": "0050.TW",
-          "name": "YUANTA SECURITIES INV TRUST CO "
-        },
-        {
-          "ticker": "2303.TW",
-          "name": "聯電"
-        }
       ]
     },
-    "current": "default"
+    "current": "Taiwan"
   }
 }
